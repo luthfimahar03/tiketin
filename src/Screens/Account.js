@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, View, Header, Left, Content, Body, Right, Button, Icon, Title, Text } from 'native-base'
+import { Button, Icon, Title, Text } from 'native-base'
 
 export default ({ navigation }) => {
     return (
