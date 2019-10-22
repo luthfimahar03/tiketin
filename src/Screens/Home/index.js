@@ -12,7 +12,12 @@ export default ({ navigation }) => {
             <Header
                 title="Home"
                 rightComponent={
-                    <Button transparent>
+                    <Button
+                        transparent
+                        onPress={() => {
+                            navigation.navigate('Account')
+                        }}
+                    >
                         <Text>Masuk</Text>
                     </Button>
                 }
