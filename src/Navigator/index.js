@@ -19,7 +19,8 @@ const Navigator = createBottomTabNavigator(
                     FormSearchHotel
                 },
                 {
-                    headerMode: 'none'
+                    headerMode: 'none',
+                    initialRouteName: 'FormSearchHotel'
                 }
             ),
             navigationOptions: {
