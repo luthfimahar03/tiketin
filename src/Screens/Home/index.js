@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { H3, Text, Button, Content, Container, View } from 'native-base'
-import Header from '../Components/Base/Header'
-import Carousel from '../Components/Base/Carousel'
-import TicketCard from '../Components/Ticket/TicketCard'
-import Color from '../Assets/Color'
+import Header from '../../Components/Base/Header'
+import Carousel from '../../Components/Base/Carousel'
+import TicketCard from '../../Components/Ticket/TicketCard'
+import Color from '../../Assets/Color'
 
 export default ({ navigation }) => {
     return (
