@@ -15,7 +15,7 @@ const RootNavigation = {
 }
 
 const Navigator = createBottomTabNavigator(RootNavigation, {
-    initialRouteName: 'Account'
+    initialRouteName: 'Home'
 })
 
 export default createAppContainer(Navigator)
