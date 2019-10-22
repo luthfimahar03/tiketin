@@ -5,11 +5,9 @@ import { Primary } from '../../Assets/Color'
 
 export default props => (
     <Header style={{ color: props.color || Primary }}>
-        <Left style={styles.headerContent}>
-            {props.leftComponent || <Title>{props.title}</Title>}
-        </Left>
+        <Left style={styles.headerContent}>{props.leftComponent || false}</Left>
         <Body style={{ ...styles.headerContent, alignItems: 'center' }}>
-            {props.centerComponent || false}
+            {props.centerComponent || <Title>{props.title}</Title>}
         </Body>
         <Right style={styles.headerContent}>
             {props.rightComponent || false}
