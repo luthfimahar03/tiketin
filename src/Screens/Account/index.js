@@ -234,7 +234,7 @@ export default ({ navigation }) => {
                 </View>
             </Content>
         </>
-)
+    )
 }
 
 const styles = StyleSheet.create({
