@@ -7,11 +7,17 @@ import { Icon } from 'native-base'
 import Home from '../Screens/Home'
 import MyOrder from '../Screens/MyOrder'
 import Account from '../Screens/Account'
+import ListHotel from '../Screens/Home/ListHotel'
 
 const Navigator = createBottomTabNavigator(
     {
         Home: {
-            screen: Home,
+            screen: createStackNavigator({
+                Home,
+                ListHotel
+            }, {
+                initialRouteName: 'ListHotel'
+            }),
             navigationOptions: {
                 tabBarIcon: props => (
                     <Icon
