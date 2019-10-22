@@ -1,17 +1,19 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 import { Text, View, Thumbnail } from 'native-base'
 
-export default ({ text, source }) => (
+export default ({ text, source, onPress }) => (
     <View style={styles.ticketCol}>
-        <View style={styles.ticketCard}>
-            <Thumbnail
-                square
-                style={{ width: 50, height: 50 }}
-                source={source}
-            />
-            <Text style={{ fontSize: 12 }}>{text}</Text>
-        </View>
+        <TouchableOpacity onPress={event => (onPress ? onPress(event) : false)}>
+            <View style={styles.ticketCard}>
+                <Thumbnail
+                    square
+                    style={{ width: 50, height: 50 }}
+                    source={source}
+                />
+                <Text style={{ fontSize: 12 }}>{text}</Text>
+            </View>
+        </TouchableOpacity>
     </View>
 )
 

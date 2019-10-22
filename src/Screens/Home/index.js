@@ -28,23 +28,23 @@ export default ({ navigation }) => {
                     <View style={styles.ticketCardWrapper}>
                         <TicketCard
                             text="Pesawat"
-                            source={require('../Assets/Images/Icons/pesawat.png')}
+                            source={require('../../Assets/Images/Icons/pesawat.png')}
                         />
                         <TicketCard
                             text="Hotel"
-                            source={require('../Assets/Images/Icons/hotel.png')}
+                            source={require('../../Assets/Images/Icons/hotel.png')}
                         />
                         <TicketCard
                             text="Kereta Api"
-                            source={require('../Assets/Images/Icons/kereta-api.png')}
+                            source={require('../../Assets/Images/Icons/kereta-api.png')}
                         />
                         <TicketCard
                             text="Sewa Mobil"
-                            source={require('../Assets/Images/Icons/mobil.png')}
+                            source={require('../../Assets/Images/Icons/mobil.png')}
                         />
                         <TicketCard
                             text="Event"
-                            source={require('../Assets/Images/Icons/event.png')}
+                            source={require('../../Assets/Images/Icons/event.png')}
                         />
                     </View>
                 </Container>
