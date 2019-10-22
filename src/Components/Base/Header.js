@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { Header, Body, Right, Left, Title } from 'native-base'
-import { Primary } from '../../Assets/Color'
+import { Base } from '../../Assets/Color'
 
 export default props => (
-    <Header style={{ color: props.color || Primary }}>
+    <Header style={{ backgroundColor: props.color || Base }}>
         <Left style={styles.headerContent}>{props.leftComponent || false}</Left>
         <Body style={{ ...styles.headerContent, alignItems: 'center' }}>
             {props.centerComponent || <Title>{props.title}</Title>}
