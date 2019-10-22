@@ -230,10 +230,16 @@ export default ({ navigation }) => {
                         }}
                     >
                         <View>
-                            <Text>
-                                Belum punya akun?{' '}
+                            <Text>Belum punya akun?</Text>
+                            <Button
+                                transparent
+                                block
+                                onPress={() => {
+                                    navigation.navigate('Register')
+                                }}
+                            >
                                 <Text style={{ color: '#0164D3' }}>DAFTAR</Text>
-                            </Text>
+                            </Button>
                         </View>
                     </View>
                 </View>
