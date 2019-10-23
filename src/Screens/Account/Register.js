@@ -9,7 +9,8 @@ import {
     Input,
     Picker,
     Label,
-    Text
+    Text,
+    Toast
 } from 'native-base'
 import Header from '../../Components/Base/Header'
 import Color from '../../Assets/Color'
@@ -85,7 +86,11 @@ export default ({ navigation }) => {
                             </Item>
                         </View>
                     </View>
-                    <Button block style={styles.btnSearch}>
+                    <Button
+                        block
+                        style={styles.btnSearch}
+                        onPress={() => handleRegister()}
+                    >
                         <Text style={{ fontWeight: 'bold', color: Color.Base }}>
                             Register
                         </Text>
