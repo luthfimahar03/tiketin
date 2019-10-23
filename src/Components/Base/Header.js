@@ -5,19 +5,17 @@ import { Base } from '../../Assets/Color'
 
 export default props => (
     <Header style={{ backgroundColor: props.color || Base }}>
-        <Left style={styles.headerContent}>{props.leftComponent || false}</Left>
-        <Body style={{ ...styles.headerContent, alignItems: 'center' }}>
+        <Left style={{ flex: 1 }}>{props.leftComponent || false}</Left>
+        <Body style={{ ...styles.headerContent }}>
             {props.centerComponent || <Title>{props.title}</Title>}
         </Body>
-        <Right style={styles.headerContent}>
-            {props.rightComponent || false}
-        </Right>
+        <Right style={{ flex: 1 }}>{props.rightComponent || false}</Right>
     </Header>
 )
 
 const styles = StyleSheet.create({
     headerContent: {
-        flex: 1,
+        flex: 5,
         paddingHorizontal: 5
     }
 })

@@ -23,7 +23,7 @@ const Navigator = createBottomTabNavigator(
                 },
                 {
                     headerMode: 'none',
-                    initialRouteName: 'Home'
+                    initialRouteName: 'ListHotel'
                 }
             ),
             navigationOptions: {
