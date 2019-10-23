@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import {
     Button,
@@ -7,13 +7,34 @@ import {
     Item,
     View,
     Input,
+    Picker,
     Label,
-    Text
+    Text,
+    Toast
 } from 'native-base'
 import Header from '../../Components/Base/Header'
 import Color from '../../Assets/Color'
+import Http from '../../Helpers/Http'
 
 export default ({ navigation }) => {
+    const [country, setCountry] = useState([])
+    const [callingCode, setCallingCode] = useState('62')
+    const [phone, setPhone] = useState('')
+    const [email, setEmail] = useState('')
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [password, setPassword] = useState('')
+
+    useEffect(() => {
+        Http.get('https://country.sutanlab.id/country.json')
+            .then(({ data }) => {
+                setCountry(data.filter(item => item.calling_code.length > 0))
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
+
     return (
         <>
             <Header
@@ -40,9 +61,22 @@ export default ({ navigation }) => {
                     </Item>
                     <View style={styles.phoneContainer}>
                         <View style={{ flex: 4 }}>
-                            <Item floatingLabel>
-                                <Label>Kode Negara</Label>
-                                <Input />
+                            <Item picker>
+                                <Picker
+                                    placeholder="Kode Negara"
+                                    selectedValue={callingCode}
+                                    onValueChange={value => {
+                                        setCallingCode(value)
+                                    }}
+                                >
+                                    {country.map(item => (
+                                        <Picker.Item
+                                            key={item.code}
+                                            label={`${item.calling_code} | ${item.code}`}
+                                            value={item.calling_code}
+                                        />
+                                    ))}
+                                </Picker>
                             </Item>
                         </View>
                         <View style={{ flex: 6 }}>
@@ -52,7 +86,11 @@ export default ({ navigation }) => {
                             </Item>
                         </View>
                     </View>
-                    <Button block style={styles.btnSearch}>
+                    <Button
+                        block
+                        style={styles.btnSearch}
+                        onPress={() => handleRegister()}
+                    >
                         <Text style={{ fontWeight: 'bold', color: Color.Base }}>
                             Register
                         </Text>
