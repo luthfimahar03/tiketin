@@ -11,6 +11,7 @@ import Login from '../Screens/Account/Login'
 import Register from '../Screens/Account/Register'
 import ListHotel from '../Screens/Home/ListHotel'
 import FormSearchHotel from '../Screens/Home/FormSearchHotel'
+import HotelDetail from '../Screens/Home/HotelDetail'
 
 const Navigator = createBottomTabNavigator(
     {
@@ -19,7 +20,8 @@ const Navigator = createBottomTabNavigator(
                 {
                     Home,
                     FormSearchHotel,
-                    ListHotel
+                    ListHotel,
+                    HotelDetail
                 },
                 {
                     headerMode: 'none',
