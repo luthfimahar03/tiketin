@@ -16,11 +16,13 @@ const Navigator = createBottomTabNavigator(
             screen: createStackNavigator(
                 {
                     Home,
-                    FormSearchHotel
+                    FormSearchHotel,
+                    ListHotel
                 },
                 {
-                    headerMode: 'none'
-                }
+                    headerMode: 'none',
+                    initialRouteName: 'ListHotel'
+                },
             ),
             navigationOptions: {
                 tabBarIcon: props => (
