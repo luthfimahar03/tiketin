@@ -11,12 +11,15 @@ import {
     Content,
     Button,
     Icon,
-    Text
+    Text,
+    Toast,
+    Spinner
 } from 'native-base'
 import { login } from '../../Redux/Actions/Auth'
 import Header from '../../Components/Base/Header'
 import facebook from '../../Assets/Images/facebook.png'
 import google from '../../Assets/Images/google.png'
+import Color from '../../Assets/Color'
 
 export default ({ navigation }) => {
     const [SecureText, setSecureText] = useState(true)
@@ -39,21 +42,47 @@ export default ({ navigation }) => {
     }
 
     const onSubmit = () => {
-        if (validateEmail(Email)) {
-            console.log(ErrorEmail)
+        if (!validateEmail(Email)) {
+            Toast.show({
+                type: 'danger',
+                position: 'bottom',
+                text: ErrorEmail
+            })
         }
 
-        if (validatePassword(Password)) {
-            console.log(ErrorPassword)
+        if (!validatePassword(Password)) {
+            Toast.show({
+                type: 'danger',
+                position: 'bottom',
+                text: ErrorPassword
+            })
         }
 
         if (validatePassword(Password) && validateEmail(Email)) {
-            console.log('post login')
+            dispatch(login({ email: Email, password: Password }))
+                .then(() => {
+                    Toast.show({
+                        type: 'success',
+                        position: 'bottom',
+                        text: 'Success login!'
+                    })
+                    navigation.navigate('Home')
+                })
+                .catch(err => {
+                    Toast.show({
+                        type: 'danger',
+                        position: 'bottom',
+                        text:
+                            err.message === 'Network Error'
+                                ? 'Tidak ada koneksi internet, gagal login'
+                                : err.response.data.message
+                    })
+                })
         }
     }
 
     const validateEmail = email => {
-        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        var re = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
 
         if (!re.test(email)) {
             setErrorEmail('Email invalid')
@@ -68,10 +97,7 @@ export default ({ navigation }) => {
     }
 
     const validatePassword = password => {
-        if (!password.match(/(\d+)/)) {
-            setErrorPassword('Password should at least contain 1 number')
-            return false
-        } else if (password.length < 4) {
+        if (password.length < 4) {
             setErrorPassword('Password should at least have 4 character')
             return false
         } else {
@@ -153,9 +179,11 @@ export default ({ navigation }) => {
                                 padding: 10
                             }}
                         >
-                            <Text style={{ fontSize: 18, color: '#0164D3' }}>
-                                Login
-                            </Text>
+                            {
+                                auth.isLoading
+                                    ? <Spinner color={Color.Base} />
+                                    : <Text style={{ fontSize: 18, color: '#0164D3' }}>Login</Text>
+                            }
                         </Button>
                     </View>
                     <View
