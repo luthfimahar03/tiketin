@@ -7,6 +7,8 @@ import { Icon } from 'native-base'
 import Home from '../Screens/Home'
 import MyOrder from '../Screens/MyOrder'
 import Account from '../Screens/Account'
+import Login from '../Screens/Account/Login'
+import Register from '../Screens/Account/Register'
 import ListHotel from '../Screens/Home/ListHotel'
 import FormSearchHotel from '../Screens/Home/FormSearchHotel'
 
@@ -21,8 +23,8 @@ const Navigator = createBottomTabNavigator(
                 },
                 {
                     headerMode: 'none',
-                    initialRouteName: 'ListHotel'
-                },
+                    initialRouteName: 'Home'
+                }
             ),
             navigationOptions: {
                 tabBarIcon: props => (
@@ -48,7 +50,17 @@ const Navigator = createBottomTabNavigator(
             }
         },
         Account: {
-            screen: Account,
+            screen: createStackNavigator(
+                {
+                    Account,
+                    Login,
+                    Register
+                },
+                {
+                    headerMode: 'none',
+                    initialRouteName: 'Login'
+                }
+            ),
             navigationOptions: {
                 tabBarIcon: props => (
                     <Icon

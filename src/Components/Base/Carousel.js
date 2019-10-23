@@ -4,17 +4,23 @@ import { View } from 'native-base'
 import { SliderBox } from 'react-native-image-slider-box'
 import Color from '../../Assets/Color'
 
-export default ({ images = [], height = 250 }) => (
-    <>
-        <View style={styles.carouselWrapper}>
-            <SliderBox circleLoop sliderBoxHeight={height} images={images} />
-        </View>
-    </>
-)
+export default ({ images = [], height = 250 }) => {
+    const styles = StyleSheet.create({
+        carouselWrapper: {
+            backgroundColor: Color.Base,
+            height
+        }
+    })
 
-const styles = StyleSheet.create({
-    carouselWrapper: {
-        backgroundColor: Color.Base,
-        height: 250
-    }
-})
+    return (
+        <>
+            <View style={styles.carouselWrapper}>
+                <SliderBox
+                    circleLoop
+                    sliderBoxHeight={height}
+                    images={images}
+                />
+            </View>
+        </>
+    )
+}
