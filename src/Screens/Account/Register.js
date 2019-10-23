@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { StyleSheet } from 'react-native'
 import {
     Button,
@@ -10,13 +11,17 @@ import {
     Picker,
     Label,
     Text,
-    Toast
+    Toast,
+    Spinner
 } from 'native-base'
+import { register } from '../../Redux/Actions/Auth'
 import Header from '../../Components/Base/Header'
 import Color from '../../Assets/Color'
 import Http from '../../Helpers/Http'
 
 export default ({ navigation }) => {
+    const dispatch = useDispatch()
+    const isLoading = useSelector(({ auth }) => auth.isLoading)
     const [country, setCountry] = useState([])
     const [callingCode, setCallingCode] = useState('62')
     const [phone, setPhone] = useState('')
@@ -35,6 +40,16 @@ export default ({ navigation }) => {
             })
     }, [])
 
+    const handleRegister = () => {
+        const data = {
+            email,
+            password,
+            num_phone: `${callingCode}${phone}`,
+            first_name: firstName,
+            last_name: lastName
+        }
+    }
+
     return (
         <>
             <Header
@@ -49,15 +64,15 @@ export default ({ navigation }) => {
                 <View style={{ padding: 15 }}>
                     <Item floatingLabel>
                         <Label>Email</Label>
-                        <Input />
+                        <Input onChangeText={value => setEmail(value)} />
                     </Item>
                     <Item floatingLabel style={{ marginTop: 15 }}>
                         <Label>Nama Depan</Label>
-                        <Input />
+                        <Input onChangeText={value => setFirstName(value)} />
                     </Item>
                     <Item floatingLabel style={{ marginTop: 15 }}>
                         <Label>Nama Belakang</Label>
-                        <Input />
+                        <Input onChangeText={value => setLastName(value)} />
                     </Item>
                     <View style={styles.phoneContainer}>
                         <View style={{ flex: 4 }}>
@@ -82,10 +97,19 @@ export default ({ navigation }) => {
                         <View style={{ flex: 6 }}>
                             <Item floatingLabel>
                                 <Label>Nomor Ponsel</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={value => setPhone(value)}
+                                />
                             </Item>
                         </View>
                     </View>
+                    <Item floatingLabel style={{ marginTop: 15 }}>
+                        <Label>Password</Label>
+                        <Input
+                            secureTextEntry
+                            onChangeText={value => setPassword(value)}
+                        />
+                    </Item>
                     <Button
                         block
                         style={styles.btnSearch}
