@@ -14,7 +14,7 @@ import {
     Toast,
     Spinner
 } from 'native-base'
-import { register } from '../../Redux/Actions/Auth'
+import { register, login } from '../../Redux/Actions/Auth'
 import Header from '../../Components/Base/Header'
 import Color from '../../Assets/Color'
 import Http from '../../Helpers/Http'
@@ -48,6 +48,34 @@ export default ({ navigation }) => {
             first_name: firstName,
             last_name: lastName
         }
+        dispatch(register(data))
+            .then(() => {
+                Toast.show({
+                    type: 'success',
+                    position: 'bottom',
+                    text: 'Berhasil register!'
+                })
+                return dispatch(login({ email, password }))
+            })
+            .then(({ value }) => {
+                Toast.show({
+                    type: 'success',
+                    position: 'bottom',
+                    text: 'Berhasil login!'
+                })
+                Http.defaults.headers.common.authorization = `Bearer ${value.data.token}`
+                navigation.navigate('Home')
+            })
+            .catch(err => {
+                Toast.show({
+                    type: 'danger',
+                    position: 'bottom',
+                    text:
+                        err.message === 'Network Error'
+                            ? 'Tidak ada koneksi internet!'
+                            : err.response.data.message
+                })
+            })
     }
 
     return (
@@ -115,9 +143,11 @@ export default ({ navigation }) => {
                         style={styles.btnSearch}
                         onPress={() => handleRegister()}
                     >
-                        <Text style={{ fontWeight: 'bold', color: Color.Base }}>
-                            Register
-                        </Text>
+                        {
+                            isLoading
+                                ? <Spinner color={Color.Base} />
+                                : <Text style={{ fontWeight: 'bold', color: Color.Base }}>Register</Text>
+                        }
                     </Button>
                 </View>
             </Content>
