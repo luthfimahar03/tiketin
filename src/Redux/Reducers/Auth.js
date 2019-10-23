@@ -25,6 +25,21 @@ export default (state = initial, action) => {
                 ...state,
                 isLoading: false
             }
+        case 'REGISTER_USER_PENDING':
+            return {
+                ...state,
+                isLoading: true
+            }
+        case 'REGISTER_USER_FULFILLED':
+            return {
+                ...state,
+                isLoading: false
+            }
+        case 'REGISTER_USER_REJECTED':
+            return {
+                ...state,
+                isLoading: false
+            }
         case 'LOGOUT_USER':
             return {
                 ...state,
