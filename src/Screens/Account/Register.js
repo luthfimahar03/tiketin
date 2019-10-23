@@ -17,7 +17,12 @@ import Http from '../../Helpers/Http'
 
 export default ({ navigation }) => {
     const [country, setCountry] = useState([])
-    const [callingCode, setCallingCode] = useState('')
+    const [callingCode, setCallingCode] = useState('62')
+    const [phone, setPhone] = useState('')
+    const [email, setEmail] = useState('')
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [password, setPassword] = useState('')
 
     useEffect(() => {
         Http.get('https://country.sutanlab.id/country.json')
@@ -58,8 +63,7 @@ export default ({ navigation }) => {
                             <Item picker>
                                 <Picker
                                     placeholder="Kode Negara"
-                                    placeholderStyle={{ color: '#bfc6ea' }}
-                                    selectedValue="62"
+                                    selectedValue={callingCode}
                                     onValueChange={value => {
                                         setCallingCode(value)
                                     }}
