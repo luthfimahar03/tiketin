@@ -1,10 +1,13 @@
 import React from 'react'
-import { Text } from 'native-base'
+import { Icon, Button, Content } from 'native-base'
+import Auth from '../../Components/Base/Auth'
 
 export default ({ navigation }) => {
     return (
         <>
-            <Text>I'm from My Order Navigation</Text>
+            <Content>
+                <Auth />
+            </Content>
         </>
     )
 }
