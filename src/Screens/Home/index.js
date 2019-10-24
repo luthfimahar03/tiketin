@@ -20,7 +20,7 @@ export default ({ navigation }) => {
             <Header
                 centerComponent={
                     <Image
-                        source={require('../../Assets/logo.png')}
+                        source={require('../../Assets/Images/logo.png')}
                         style={{ width: '100%', height: 25 }}
                     />
                 }
