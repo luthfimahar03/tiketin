@@ -1,25 +1,53 @@
 import React from 'react'
-import { Button, Icon } from 'native-base'
-import Header from './Header'
+import { StyleSheet } from 'react-native'
+import { Button, Icon, Header, Text, Tabs, ScrollableTab, Tab, TabHeading, View } from 'native-base'
+import BaseHeader from './Header'
+import Color from '../../Assets/Color'
 
-export default props => (
+const TabComponent = ({ text, icon }) => (
+    <View style={styles.cardTab}>
+        <Icon type="FontAwesome" name={icon} style={{ fontSize: 14 }} />
+        <Text style={{ fontSize: 14 }}>{text}</Text>
+    </View>
+)
+
+export default ({ navigation }) => (
     <>
-        <Header
+        <BaseHeader
             title="My Order"
             rightComponent={
                 <>
                     <Button
                         transparent
-                        onPress={() =>
-                            props.onPressHistory
-                                ? props.onPressHistory()
-                                : false
-                        }
+                        onPress={() => false}
                     >
-                        <Icon name="arrow-back" />
+                        <Icon type="Ionicons" name="ios-paper" />
                     </Button>
                 </>
             }
         />
+        <Header hasTabs style={{ backgroundColor: Color.Base, height: 80 }}>
+            <Tabs
+                renderTabBar={() => (
+                    <ScrollableTab style={{ backgroundColor: Color.Base, height: 80 }} />
+                )}
+            >
+                <Tab
+                    heading={
+                        <TabHeading style={{ backgroundColor: Color.Base }}>
+                            <TabComponent text="Hotel" icon="hotel" />
+                        </TabHeading>
+                    }
+                />
+            </Tabs>
+        </Header>
     </>
 )
+
+const styles = StyleSheet.create({
+    cardTab: {
+        width: 100,
+        padding: 10,
+        backgroundColor: 'rgba(255, 255, 255, .75)'
+    }
+})

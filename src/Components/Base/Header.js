@@ -33,7 +33,7 @@ const HeaderContent = props => {
 }
 
 export default props => (
-    <Header style={{ backgroundColor: props.color || Base }}>
+    <Header style={{ height: props.height || 50, backgroundColor: props.color || Base }}>
         <HeaderContent {...props} />
     </Header>
 )
