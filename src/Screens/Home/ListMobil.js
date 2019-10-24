@@ -14,6 +14,7 @@ export default ({ navigation }) => {
                 <View style={styles.wrapper}>
                     <Header
                         detail
+                        height={60}
                         leftComponent={
                             <Button
                                 transparent
@@ -25,35 +26,14 @@ export default ({ navigation }) => {
                                 />
                             </Button>
                         }
-                        rightComponent={
-                            <Button transparent>
-                                <Icon
-                                    name="ios-search"
-                                    style={{ color: 'white' }}
-                                />
-                            </Button>
-                        }
                         centerComponent={
                             <View style={{ flexDirection: 'column' }}>
                                 <Text style={{ color: 'white' }}>
-                                    afkaknfknfk
+                                    Aceh
                                 </Text>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <Icon
-                                        type="FontAwesome5"
-                                        name="hotel"
-                                        style={styles.headerSub}
-                                    />
-                                    <Text style={styles.headerSub}>2</Text>
-                                    <Icon
-                                        type="FontAwesome5"
-                                        name="user"
-                                        style={styles.headerSub}
-                                    />
-                                    <Text style={styles.headerSub}>1</Text>
-                                    <Text style={styles.headerSub}>|</Text>
+                                <View >
                                     <Text style={styles.headerSub}>
-                                        Lorem ipsum dolor sit amet
+                                        25 Oktober 2019 - 25 Oktober 2019
                                     </Text>
                                 </View>
                             </View>
@@ -63,31 +43,221 @@ export default ({ navigation }) => {
                         <View style={{ flexDirection: 'row', padding: 15 }}>
                             <View style={{ flex: 1, alignItems: 'flex-start' }}>
                                 <Text style={{ color: '#626262' }}>
-                                    Menampilkan properti terbaik
+                                    8 mobil Sewa
                                 </Text>
-                            </View>
-                            <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                                <Icon
-                                    name="map"
-                                    type="Entypo"
-                                    style={{ color: '#626262' }}
-                                />
                             </View>
                         </View>
                         <View style={styles.listContainer}>
                             <Card style={styles.cardList}>
                                 <CardItem header button onPress={() => alert('This is Card Header')}>
-                                    <View
-                                        style={{ flex: 0.8, flexWrap: 'wrap' }}
-                                    >
-                                        <Thumbnail
-                                            square
-                                            source={rk}
-                                            style={styles.image}
-                                        />
+                                    <View style={{ flexDirection: "row" }}>
+                                        <View
+                                            style={{ flex: 0.4 }}
+                                        >
+                                            <Thumbnail
+                                                square
+                                                source={rk}
+                                                style={styles.image}
+                                            />
+                                        </View>
+                                        <View style={{ flex: 1, marginLeft: 10 }}>
+                                            <Text style={{ fontWeight: "bold" }}>Daihatsu Great New Xenia</Text>
+                                            <View style={{ flexDirection: "row" }}>
+                                                <Card style={{ width: 50, borderRadius: 5 }}>
+                                                    <View style={{ flexDirection: "row", padding: 5 }}>
+                                                        <View >
+                                                            <Icon
+                                                                name="user"
+                                                                type="FontAwesome"
+                                                                style={{ fontSize: 15, marginTop: 3 }}>
+                                                            </Icon>
+                                                        </View>
+                                                        <View style={{ marginLeft: 15 }}>
+                                                            <Text>
+                                                                6
+                                                            </Text>
+                                                        </View>
+                                                    </View>
+                                                </Card>
+                                                <Card style={{ width: 50, marginLeft: 10, borderRadius: 5 }}>
+                                                    <View style={{ flexDirection: "row", padding: 5 }}>
+                                                        <View >
+                                                            <Icon
+                                                                name="shopping-bag"
+                                                                type="Foundation"
+                                                                style={{ fontSize: 15, marginTop: 2 }}>
+                                                            </Icon>
+                                                        </View>
+                                                        <View style={{ marginLeft: 15 }}>
+                                                            <Text>
+                                                                6
+                                                            </Text>
+                                                        </View>
+                                                    </View>
+                                                </Card>
+                                            </View>
+                                            <View style={{ flexDirection: "row" }}>
+                                                <Icon
+                                                    name="check-circle"
+                                                    type="MaterialCommunityIcons"
+                                                    style={{ color: "orange" }}
+                                                >
+                                                </Icon>
+                                                <Text style={{ marginTop: 5, color: "#626262" }}> Termasuk Sopir</Text>
+                                            </View>
+                                            <View style={{ flexDirection: "row" }}>
+                                                <Icon
+                                                    name="check-circle"
+                                                    type="MaterialCommunityIcons"
+                                                    style={{ color: "orange" }}
+                                                >
+                                                </Icon>
+                                                <Text style={{ marginTop: 5, color: "#626262" }}> Gratis Air Mineral</Text>
+                                            </View>
+                                            <Text style={{ fontWeight: "bold", color: "orange", marginLeft: 2, marginTop: 5 }}>IDR 450.000/12 Jam</Text>
+                                        </View>
                                     </View>
-                                    <View style={{ flex: 1, flexWrap: 'wrap' }}>
-                                        <Text>Hello World</Text>
+                                </CardItem>
+                            </Card>
+                            <Card style={styles.cardList}>
+                                <CardItem header button onPress={() => alert('This is Card Header')}>
+                                    <View style={{ flexDirection: "row" }}>
+                                        <View
+                                            style={{ flex: 0.4 }}
+                                        >
+                                            <Thumbnail
+                                                square
+                                                source={rk}
+                                                style={styles.image}
+                                            />
+                                        </View>
+                                        <View style={{ flex: 1, marginLeft: 10 }}>
+                                            <Text style={{ fontWeight: "bold" }}>Daihatsu Great New Xenia</Text>
+                                            <View style={{ flexDirection: "row" }}>
+                                                <Card style={{ width: 50, borderRadius: 5 }}>
+                                                    <View style={{ flexDirection: "row", padding: 5 }}>
+                                                        <View >
+                                                            <Icon
+                                                                name="user"
+                                                                type="FontAwesome"
+                                                                style={{ fontSize: 15, marginTop: 3 }}>
+                                                            </Icon>
+                                                        </View>
+                                                        <View style={{ marginLeft: 15 }}>
+                                                            <Text>
+                                                                6
+                                                            </Text>
+                                                        </View>
+                                                    </View>
+                                                </Card>
+                                                <Card style={{ width: 50, marginLeft: 10, borderRadius: 5 }}>
+                                                    <View style={{ flexDirection: "row", padding: 5 }}>
+                                                        <View >
+                                                            <Icon
+                                                                name="shopping-bag"
+                                                                type="Foundation"
+                                                                style={{ fontSize: 15, marginTop: 2 }}>
+                                                            </Icon>
+                                                        </View>
+                                                        <View style={{ marginLeft: 15 }}>
+                                                            <Text>
+                                                                6
+                                                            </Text>
+                                                        </View>
+                                                    </View>
+                                                </Card>
+                                            </View>
+                                            <View style={{ flexDirection: "row" }}>
+                                                <Icon
+                                                    name="check-circle"
+                                                    type="MaterialCommunityIcons"
+                                                    style={{ color: "orange" }}
+                                                >
+                                                </Icon>
+                                                <Text style={{ marginTop: 5, color: "#626262" }}> Termasuk Sopir</Text>
+                                            </View>
+                                            <View style={{ flexDirection: "row" }}>
+                                                <Icon
+                                                    name="check-circle"
+                                                    type="MaterialCommunityIcons"
+                                                    style={{ color: "orange" }}
+                                                >
+                                                </Icon>
+                                                <Text style={{ marginTop: 5, color: "#626262" }}> Gratis Air Mineral</Text>
+                                            </View>
+                                            <Text style={{ fontWeight: "bold", color: "orange", marginLeft: 2, marginTop: 5 }}>IDR 450.000/12 Jam</Text>
+                                        </View>
+                                    </View>
+                                </CardItem>
+                            </Card>
+                            <Card style={styles.cardList}>
+                                <CardItem header button onPress={() => alert('This is Card Header')}>
+                                    <View style={{ flexDirection: "row" }}>
+                                        <View
+                                            style={{ flex: 0.4 }}
+                                        >
+                                            <Thumbnail
+                                                square
+                                                source={rk}
+                                                style={styles.image}
+                                            />
+                                        </View>
+                                        <View style={{ flex: 1, marginLeft: 10 }}>
+                                            <Text style={{ fontWeight: "bold" }}>Daihatsu Great New Xenia</Text>
+                                            <View style={{ flexDirection: "row" }}>
+                                                <Card style={{ width: 50, borderRadius: 5 }}>
+                                                    <View style={{ flexDirection: "row", padding: 5 }}>
+                                                        <View >
+                                                            <Icon
+                                                                name="user"
+                                                                type="FontAwesome"
+                                                                style={{ fontSize: 15, marginTop: 3 }}>
+                                                            </Icon>
+                                                        </View>
+                                                        <View style={{ marginLeft: 15 }}>
+                                                            <Text>
+                                                                6
+                                                            </Text>
+                                                        </View>
+                                                    </View>
+                                                </Card>
+                                                <Card style={{ width: 50, marginLeft: 10, borderRadius: 5 }}>
+                                                    <View style={{ flexDirection: "row", padding: 5 }}>
+                                                        <View >
+                                                            <Icon
+                                                                name="shopping-bag"
+                                                                type="Foundation"
+                                                                style={{ fontSize: 15, marginTop: 2 }}>
+                                                            </Icon>
+                                                        </View>
+                                                        <View style={{ marginLeft: 15 }}>
+                                                            <Text>
+                                                                6
+                                                            </Text>
+                                                        </View>
+                                                    </View>
+                                                </Card>
+                                            </View>
+                                            <View style={{ flexDirection: "row" }}>
+                                                <Icon
+                                                    name="check-circle"
+                                                    type="MaterialCommunityIcons"
+                                                    style={{ color: "orange" }}
+                                                >
+                                                </Icon>
+                                                <Text style={{ marginTop: 5, color: "#626262" }}> Termasuk Sopir</Text>
+                                            </View>
+                                            <View style={{ flexDirection: "row" }}>
+                                                <Icon
+                                                    name="check-circle"
+                                                    type="MaterialCommunityIcons"
+                                                    style={{ color: "orange" }}
+                                                >
+                                                </Icon>
+                                                <Text style={{ marginTop: 5, color: "#626262" }}> Gratis Air Mineral</Text>
+                                            </View>
+                                            <Text style={{ fontWeight: "bold", color: "orange", marginLeft: 2, marginTop: 5 }}>IDR 450.000/12 Jam</Text>
+                                        </View>
                                     </View>
                                 </CardItem>
                             </Card>
@@ -103,13 +273,15 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: 125,
-        borderRadius: 5
+        borderRadius: 5,
+        marginTop: 10
     },
     cardList: {
         width: '100%',
         elevation: 0,
         borderWidth: 0,
-        shadowOpacity: 0
+        shadowOpacity: 0,
+        marginBottom: -5
     },
     listContainer: {
         flexDirection: 'row',
@@ -126,11 +298,11 @@ const styles = StyleSheet.create({
     headerSub: {
         color: 'white',
         fontSize: 11,
-        marginHorizontal: 5
+        marginHorizontal: 0,
+        marginTop: 5
+
     },
     cardContainer: {
-        borderTopRightRadius: 20,
-        borderTopLeftRadius: 20,
         backgroundColor: 'white',
         flexDirection: 'column'
     }

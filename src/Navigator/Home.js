@@ -24,6 +24,6 @@ export default createStackNavigator(
     },
     {
         headerMode: 'none',
-        initialRouteName: 'ListMobil'
+        initialRouteName: 'Home'
     }
 )
