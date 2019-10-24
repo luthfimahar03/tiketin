@@ -1,14 +1,14 @@
 import React from "react";
-import {Animated, Dimensions, Platform, Text, TouchableOpacity, View} from "react-native";
-import {Body, Header, List, Icon, ListItem as Item, ScrollableTab, Tab, TabHeading, Tabs, Title} from "native-base"
+import {Animated, Dimensions, Platform, Text, TouchableOpacity, View, StyleSheet} from "react-native";
+import {Body, Header, List, Icon, ListItem as Item, ScrollableTab, Tab, TabHeading, Tabs, Title, Footer} from "native-base"
 import Carousel from '../../Components/Base/Carousel'
 
 const {width: SCREEN_WIDTH} = Dimensions.get("window");
 const IMAGE_HEIGHT = 250;
 const HEADER_HEIGHT = Platform.OS === "ios" ? 64 : 50;
 const SCROLL_HEIGHT = IMAGE_HEIGHT - HEADER_HEIGHT;
-const THEME_COLOR = "rgba(85,186,255, 1)";
-const FADED_THEME_COLOR = "rgba(85,186,255, 0.8)";
+const THEME_COLOR = '#0065D1';
+const FADED_THEME_COLOR = '#0065D0';
 
 export default props => {
     const nScroll = new Animated.Value(0);
@@ -42,21 +42,19 @@ export default props => {
         outputRange: [1, 0],
     });
     const tabContent = (x, i) => <View style={{height: state.height}}>
-    {/*<View onLayout={({nativeEvent: {layout: {height}}}) => {
+    <View style={{flex: 1, backgroundColor: 'red', padding: 10}} onLayout={({nativeEvent: {layout: {height}}}) => {
             heights[i] = height;
             if (state.activeTab === i) state.height = height
-        }}>*/}
+        }}>
+        <View style={{backgroundColor: 'blue'}}>
+            <Text>Hello</Text>
+        </View>
         {/*{new Array(x).fill(null).map((_, i) => <Item key={i}><Text>Item {i}</Text></Item>)}*/}
-        <Text>
-            Hello
-        </Text>
-    {/*</View>*/}
-
-        </View>;
+    </View></View>;
     heights = [500, 500];
     state = {
         activeTab: 0,
-        height: 1000
+        height: 800
     };
 
     nScroll.addListener(Animated.event([{value: scroll}], {useNativeDriver: false}));
@@ -136,7 +134,73 @@ export default props => {
                     </Animated.View>
                 }>
                 <Tab heading="Detail Kamar">
-                    {tabContent(30, 0)}
+                    {/*{tabContent(30, 0)}*/}
+                    <View style={{flex: 1,  padding: 10}}>
+                        <View style={{width: '100%'}}>
+                            <Text style={{fontSize: 25}}>
+                                Deluxe Double Room Only
+                            </Text>
+                        </View>
+                        <View style={{width: '100%'}}>
+                            <Text style={{fontSize: 15, color: '#4a4a4a'}}>
+                                Pembatalan Gratis
+                            </Text>
+                        </View>
+                        <View style={{width: '100%'}}>
+                            <Text >
+                                <Icon name='wifi' style={{fontSize: 19, color: '#4a4a4a'}} type='Feather' /> {' '}
+                                <Text style={{color: '#4a4a4a'}}>Wi-Fi</Text>{'        '}
+                                <Icon name='ios-restaurant' style={{fontSize: 19, color: '#4a4a4a'}} />{' '}
+                                <Text style={{color: '#4a4a4a'}}>Makan Pagi</Text>
+                            </Text>
+                        </View>
+                        <View style={{width: '100%', padding: 20}}>
+                            <View
+                                style={{
+                                    alignSelf: 'stretch',
+                                    width: '100%',
+                                    borderBottomColor: '#9f9f9f',
+                                    backgroundColor: 'red',
+                                    borderBottomWidth:
+                                        StyleSheet.hairlineWidth
+                                }}
+                            />
+                        </View>
+                        <View style={{width: '100%'}}>
+                            <Text style={{fontSize: 18, color: '#4a4a4a', fontWeight: 'bold'}}>
+                                Penawaran Terbatas
+                            </Text>
+                            <View style={{backgroundColor: '#E5EDF3', width: '50%', borderStyle: 'dashed', borderColor: '#0065D1', borderWidth: 1, padding: 2, flex: 0.8, flexDirection: 'row', marginHorizontal: 20, marginVertical: 20, justifyContent:'center', alignItems: 'center', borderRadius: 3, flexWrap: 'wrap'}}>
+                                <Text style={{fontSize: 15, color: '#0065D1'}}>Discount for 10%</Text>
+                            </View>
+                            <Text style={{fontSize: 18, fontWeight: 'bold', color: '#4a4a4a'}}>
+                                Sekilas tentang kamar
+                            </Text>
+                        </View>
+                        <View style={{width: '100%'}}>
+                            <Text style={{fontSize: 15, color: '#4a4a4a'}}>
+                                asdasdasdddddddddddddddddddddasdasdckqicmosdmcaoidcmaoidsmcoaidsmcoisamcosaimcoiasdmcoaimcaoisdmcoisamcaoisdmcoisamcoimdscoaimdcoiasdmcoisadmciasdmc
+                            </Text>
+                        </View>
+                        <View style={{width: '100%'}}>
+                            <Text style={{fontSize: 15, color: '#0065D1'}}>
+                                Selengkapnya
+                            </Text>
+                        </View>
+                        <View style={{width: '100%', marginTop: 20}}>
+                            <Text style={{fontSize: 18, fontWeight: 'bold', color: '#4a4a4a'}}>
+                                Fasilitas Kamar
+                            </Text>
+                        </View>
+                        <View style={{width: '100%', color: '#4a4a4a'}}>
+                            <Text>{`\u2022 AC`}</Text>
+                        </View>
+                        <View style={{width: '100%'}}>
+                            <Text style={{fontSize: 15, color: '#0065D1'}}>
+                                Selengkapnya
+                            </Text>
+                        </View>
+                    </View>
                 </Tab>
                 <Tab heading="Detail Harga">
                     {tabContent(15, 1)}
