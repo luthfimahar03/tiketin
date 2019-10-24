@@ -3,7 +3,7 @@ import { Image, Dimensions, StyleSheet } from 'react-native'
 import { View, Text, Button } from 'native-base'
 import Color from '../../Assets/Color'
 
-export default () => {
+export default ({ navigate, navigationKey }) => {
     return (
         <>
             <View style={styles.container}>
@@ -15,12 +15,21 @@ export default () => {
                     Log in untuk atur pesanan dengan mudah
                 </Text>
                 <Text style={{ textAlign: 'center', marginTop: 5 }}>
-                    Setelah log in, kamu akan melihat semua pesanan dan E-tiketmu disini
+                    Setelah log in, kamu akan melihat semua pesanan dan
+                    E-tiketmu disini
                 </Text>
-                <Button block style={styles.btnLogin}>
+                <Button
+                    block
+                    style={styles.btnLogin}
+                    onPress={() => navigate('Login')}
+                >
                     <Text style={{ color: Color.Base }}>LOG IN</Text>
                 </Button>
-                <Button transparent style={{ marginTop: 15 }}>
+                <Button
+                    transparent
+                    style={{ marginTop: 15 }}
+                    onPress={() => navigate(navigationKey)}
+                >
                     <Text style={{ color: Color.Base }}>PESAN PERJALANAN</Text>
                 </Button>
             </View>
