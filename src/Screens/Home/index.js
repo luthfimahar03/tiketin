@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { StyleSheet } from 'react-native'
 import { H3, Text, Button, Content, Container, View } from 'native-base'
 import Header from '../../Components/Base/Header'
@@ -7,19 +8,25 @@ import TicketCard from '../../Components/Ticket/TicketCard'
 import Color from '../../Assets/Color'
 
 export default ({ navigation }) => {
+    const auth = useSelector(({ auth }) => auth)
+
     return (
         <>
             <Header
                 title="Home"
                 rightComponent={
-                    <Button
-                        transparent
-                        onPress={() => {
-                            navigation.navigate('Account')
-                        }}
-                    >
-                        <Text>Masuk</Text>
-                    </Button>
+                    !auth.loggedIn ? (
+                        <Button
+                            transparent
+                            onPress={() => {
+                                navigation.navigate('Account')
+                            }}
+                        >
+                            <Text>Masuk</Text>
+                        </Button>
+                    ) : (
+                        false
+                    )
                 }
             />
             <Content>
