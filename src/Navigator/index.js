@@ -1,33 +1,16 @@
 import React from 'react'
 import { createAppContainer } from 'react-navigation'
-import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { Icon } from 'native-base'
 
-import Home from '../Screens/Home'
-import MyOrder from '../Screens/MyOrder'
-import Account from '../Screens/Account'
-import Login from '../Screens/Account/Login'
-import Register from '../Screens/Account/Register'
-import ListHotel from '../Screens/Home/ListHotel'
-import FormSearchHotel from '../Screens/Home/FormSearchHotel'
-import RoomDetail from '../Screens/Home/RoomDetail'
+import Home from './Home'
+import MyOrder from './MyOrder'
+import Account from './Account'
 
 const Navigator = createBottomTabNavigator(
     {
         Home: {
-            screen: createStackNavigator(
-                {
-                    Home,
-                    FormSearchHotel,
-                    ListHotel,
-                    RoomDetail
-                },
-                {
-                    headerMode: 'none',
-                    initialRouteName: 'RoomDetail'
-                }
-            ),
+            screen: Home,
             navigationOptions: {
                 tabBarIcon: props => (
                     <Icon
@@ -52,17 +35,7 @@ const Navigator = createBottomTabNavigator(
             }
         },
         Account: {
-            screen: createStackNavigator(
-                {
-                    Account,
-                    Login,
-                    Register
-                },
-                {
-                    headerMode: 'none',
-                    initialRouteName: 'Login'
-                }
-            ),
+            screen: Account,
             navigationOptions: {
                 tabBarIcon: props => (
                     <Icon

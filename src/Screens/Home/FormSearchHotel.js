@@ -58,8 +58,14 @@ export default ({ navigation }) => {
                         <Label>Filter</Label>
                         <Input />
                     </Item>
-                    <Button block style={styles.btnSearch}>
-                        <Text style={{ fontWeight: 'bold', color: Color.Base }}>Cari Hotel</Text>
+                    <Button
+                        block
+                        style={styles.btnSearch}
+                        onPress={() => navigation.navigate('ListHotel')}
+                    >
+                        <Text style={{ fontWeight: 'bold', color: Color.Base }}>
+                            Cari Hotel
+                        </Text>
                     </Button>
                 </View>
             </Content>
