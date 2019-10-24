@@ -22,6 +22,7 @@
     "react-native-reanimated": "^1.3.0",
     "react-native-simple-dialogs": "^1.2.0",
     "react-native-snap-carousel": "^3.8.2",
+    "react-native-splash-screen": "^3.2.0",
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^1.10.2",
     "react-navigation-tabs": "^2.5.6",
