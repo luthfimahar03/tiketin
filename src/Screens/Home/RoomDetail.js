@@ -1,6 +1,6 @@
 import React from "react";
 import {Animated, Dimensions, Platform, Text, TouchableOpacity, View, StyleSheet} from "react-native";
-import {Body, Header, List, Icon, ListItem as Item, ScrollableTab, Tab, TabHeading, Tabs, Title, Footer} from "native-base"
+import {Body, Header, List, Content, Icon, ListItem as Item, ScrollableTab, Tab, TabHeading, Tabs, Title, Footer} from "native-base"
 import Carousel from '../../Components/Base/Carousel'
 
 const {width: SCREEN_WIDTH} = Dimensions.get("window");
@@ -42,12 +42,82 @@ export default props => {
         outputRange: [1, 0],
     });
     const tabContent = (x, i) => <View style={{height: state.height}}>
-    <View style={{flex: 1, backgroundColor: 'red', padding: 10}} onLayout={({nativeEvent: {layout: {height}}}) => {
+    <View style={{flex: 1, padding: 20}} onLayout={({nativeEvent: {layout: {height}}}) => {
             heights[i] = height;
             if (state.activeTab === i) state.height = height
         }}>
-        <View style={{backgroundColor: 'blue'}}>
-            <Text>Hello</Text>
+        <View style={{flexWrap: 'wrap', flexDirection: 'row'}}>
+            <View style={{width: '100%'}}>
+                <Text style={{fontSize: 25}}>
+                    Detail Biaya dan Pajak
+                </Text>
+            </View>
+            <View style={{width: '50%'}}>
+                <Text style={{fontSize: 20, marginVertical: 10, color: '#4a4a4a'}}>
+                    Deluxe Double Room Only
+                </Text>
+            </View>
+            {/*{'      '}*/}
+            <View style={{width: '50%'}}>
+                <Text style={{fontSize: 20, marginVertical: 10, color: '#4a4a4a'}}>
+                    {'      '}IDR 2.000.000
+                </Text>
+            </View>
+            <View style={{width: '50%'}}>
+                <Text style={{fontSize: 20, color: '#4a4a4a'}}>
+                    {`\u2022 Malam 1 x 1 Kamar`}
+                </Text>
+            </View>
+            {/*{'      '}*/}
+            <View style={{width: '50%'}}>
+                <Text style={{fontSize: 20, color: '#4a4a4a'}}>
+                    {'      '}IDR 200.000
+                </Text>
+            </View>
+            <View style={{width: '50%'}}>
+                <Text style={{fontSize: 20, color: '#4a4a4a'}}>
+                    {`\u2022 Malam 2 x 1 Kamar`}
+                </Text>
+            </View>
+            {/*{'      '}*/}
+            <View style={{width: '50%'}}>
+                <Text style={{fontSize: 20, color: '#4a4a4a'}}>
+                    {'      '}IDR 200.000
+                </Text>
+            </View>
+            <View style={{width: '50%'}}>
+                <Text style={{fontSize: 20, color: '#4a4a4a'}}>
+                    {`\u2022 Malam 3 x 1 Kamar`}
+                </Text>
+            </View>
+            {/*{'      '}*/}
+            <View style={{width: '50%', color: '#4a4a4a'}}>
+                <Text style={{fontSize: 20, color: '#4a4a4a'}}>
+                    {'      '}IDR 200.000
+                </Text>
+            </View>
+            <View style={{width: '100%', padding: 20}}>
+                <View
+                    style={{
+                        alignSelf: 'stretch',
+                        width: '100%',
+                        borderBottomColor: '#9f9f9f',
+                        borderBottomWidth:
+                            StyleSheet.hairlineWidth
+                    }}
+                />
+            </View>
+            <View style={{width: '50%'}}>
+                <Text style={{fontSize: 20, color: '#4a4a4a'}}>
+                    Total
+                </Text>
+            </View>
+            {/*{'      '}*/}
+            <View style={{width: '50%'}}>
+                <Text style={{fontSize: 25, color: '#0065D1'}}>
+                    {'      '}IDR 200.000
+                </Text>
+            </View>
         </View>
         {/*{new Array(x).fill(null).map((_, i) => <Item key={i}><Text>Item {i}</Text></Item>)}*/}
     </View></View>;
@@ -60,6 +130,8 @@ export default props => {
     nScroll.addListener(Animated.event([{value: scroll}], {useNativeDriver: false}));
 
     return (
+        <>
+        {/*<Content>*/}
         <View>
             <Animated.View style={{position: "absolute", width: "100%", backgroundColor: headerBg, zIndex: 1}}>
                 <Header style={{backgroundColor: "transparent"}} hasTabs>
@@ -160,7 +232,6 @@ export default props => {
                                     alignSelf: 'stretch',
                                     width: '100%',
                                     borderBottomColor: '#9f9f9f',
-                                    backgroundColor: 'red',
                                     borderBottomWidth:
                                         StyleSheet.hairlineWidth
                                 }}
@@ -208,5 +279,13 @@ export default props => {
             </Tabs>
         </Animated.ScrollView>
     </View>
+{/*</Content>*/}
+    {/*<Content><Text>asd</Text></Content>
+    <Footer style={{height: 200}}>
+        <Text>
+            Hello
+        </Text>
+    </Footer>*/}
+    </>
 )
 }
