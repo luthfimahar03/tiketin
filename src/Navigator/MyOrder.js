@@ -11,11 +11,11 @@ export default createMaterialTopTabNavigator(
         MyOrder: {
             screen: MyOrder
         },
-        CarOrders: {
-            screen: CarOrders
-        },
         HotelOrders: {
             screen: HotelOrders
+        },
+        CarOrders: {
+            screen: CarOrders
         }
     },
     {
