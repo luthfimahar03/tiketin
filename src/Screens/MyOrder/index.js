@@ -1,10 +1,24 @@
 import React from 'react'
-import { Text } from 'native-base'
+import { useSelector } from 'react-redux'
+import { Text, Icon, Button, Content } from 'native-base'
+import Auth from '../../Components/Base/Auth'
 
 export default ({ navigation }) => {
+    const isLoggedIn = useSelector(({ auth }) => auth.loggedIn)
+
+    if (!isLoggedIn) {
+        return (
+            <>
+                <Content>
+                    <Auth navigate={navigation.navigate} navigationKey="Home" />
+                </Content>
+            </>
+        )
+    }
+
     return (
         <>
-            <Text>I'm from My Order Navigation</Text>
+            <Text>Hello World</Text>
         </>
     )
 }
