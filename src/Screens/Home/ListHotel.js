@@ -7,7 +7,7 @@ import rk from '../../Assets/Images/rk.jpg'
 export default ({ navigation }) => {
     const screenHeight = Math.round(Dimensions.get('window').height)
     const screenWidth = Math.round(Dimensions.get('window').width)
-
+ 
     return (
         <>
         <Content>
