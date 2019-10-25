@@ -25,6 +25,6 @@ export default createStackNavigator(
     },
     {
         headerMode: 'none',
-        initialRouteName: 'FormSearchPesawat'
+        initialRouteName: 'Home'
     }
 )
