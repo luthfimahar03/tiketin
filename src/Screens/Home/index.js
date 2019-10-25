@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { StyleSheet, Image } from 'react-native'
-import { H3, Text, Button, Content, Container, View, Thumbnail } from 'native-base'
-import SplashScreen from 'react-native-splash-screen'
+import { H3, Text, Button, Content, Container, View } from 'native-base'
 import Header from '../../Components/Base/Header'
 import Carousel from '../../Components/Base/Carousel'
 import TicketCard from '../../Components/Ticket/TicketCard'
@@ -11,16 +10,12 @@ import Color from '../../Assets/Color'
 export default ({ navigation }) => {
     const auth = useSelector(({ auth }) => auth)
 
-    useEffect(() => {
-        SplashScreen.hide()
-    }, [])
-
     return (
         <>
             <Header
                 centerComponent={
                     <Image
-                        source={require('../../Assets/logo.png')}
+                        source={require('../../Assets/Images/logo.png')}
                         style={{ width: '100%', height: 25 }}
                     />
                 }
@@ -57,6 +52,9 @@ export default ({ navigation }) => {
                         <TicketCard
                             text="Pesawat"
                             source={require('../../Assets/Images/Icons/pesawat.png')}
+                            onPress={() => {
+                                navigation.navigate('FormSearchPesawat')
+                            }}
                         />
                         <TicketCard
                             text="Hotel"
@@ -66,15 +64,15 @@ export default ({ navigation }) => {
                             }}
                         />
                         <TicketCard
-                            text="Kereta Api"
-                            source={require('../../Assets/Images/Icons/kereta-api.png')}
-                        />
-                        <TicketCard
                             text="Sewa Mobil"
                             source={require('../../Assets/Images/Icons/mobil.png')}
                             onPress={() => {
                                 navigation.navigate('FormSearchMobil')
                             }}
+                        />
+                        <TicketCard
+                            text="Kereta Api"
+                            source={require('../../Assets/Images/Icons/kereta-api.png')}
                         />
                         <TicketCard
                             text="Event"
