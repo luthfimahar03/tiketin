@@ -68,6 +68,9 @@ export default ({ navigation }) => {
                         <TicketCard
                             text="Kereta Api"
                             source={require('../../Assets/Images/Icons/kereta-api.png')}
+                            onPress={() => {
+                                navigation.navigate('ListOrderHotel')
+                            }}
                         />
                         <TicketCard
                             text="Sewa Mobil"

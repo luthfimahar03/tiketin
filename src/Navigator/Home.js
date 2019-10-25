@@ -6,7 +6,6 @@ import ListHotel from '../Screens/Home/ListHotel'
 
 import ListKamar from '../Screens/Home/ListKamar'
 import ListMobil from '../Screens/Home/ListMobil'
-import ListOrderHotel from '../Screens/Home/ListOrderHotel'
 import FormSearchMobil from '../Screens/Home/FormSearchMobil'
 import HotelDetail from '../Screens/Home/HotelDetail'
 import RoomDetail from '../Screens/Home/RoomDetail'
@@ -21,7 +20,7 @@ export default createStackNavigator(
         RoomDetail,
         ListKamar,
         ListMobil,
-        ListOrderHotel
+        
 
     },
     {
