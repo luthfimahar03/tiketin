@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { StyleSheet, Image } from 'react-native'
-import { H3, Text, Button, Content, Container, View, Thumbnail } from 'native-base'
+import { H3, Text, Button, Content, Container, View } from 'native-base'
 import SplashScreen from 'react-native-splash-screen'
 import Header from '../../Components/Base/Header'
 import Carousel from '../../Components/Base/Carousel'
@@ -20,7 +20,7 @@ export default ({ navigation }) => {
             <Header
                 centerComponent={
                     <Image
-                        source={require('../../Assets/logo.png')}
+                        source={require('../../Assets/Images/logo.png')}
                         style={{ width: '100%', height: 25 }}
                     />
                 }
