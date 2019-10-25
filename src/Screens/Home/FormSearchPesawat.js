@@ -4,6 +4,7 @@ import { Dimensions, StyleSheet } from 'react-native'
 import Header from '../../Components/Base/Header'
 import citilink from '../../Assets/Images/citilink.png'
 
+
 export default ({ navigation }) => {
     const screenHeight = Math.round(Dimensions.get('window').height)
     const screenWidth = Math.round(Dimensions.get('window').width)
@@ -41,7 +42,7 @@ export default ({ navigation }) => {
                                     <Text style={{ color: 'white', marginTop: 1, marginBottom: 4 }}> Denpasar</Text>
                                 </View>
 
-                                <View style={{ flexDirection: 'row', padding: 5, marginLeft: -10 }}>
+                                <View style={{ flexDirection: 'row', padding: 5 ,marginTop: -2 , marginLeft: -10 }}>
                                     <Text style={styles.headerSub}>JKTC</Text>
                                     <Icon
                                         name="arrowright"
@@ -67,15 +68,6 @@ export default ({ navigation }) => {
                             <Card style={styles.cardList}>
                                 <CardItem header button onPress={() => navigation.navigate('RoomDetail')} >
                                     <View style={{ flex: 1 }}>
-                                        <Text>Menampilkan penerbangan terbaik</Text>
-                                        <View
-                                            style={{
-                                                borderBottomColor: 'black',
-                                                borderBottomWidth: StyleSheet.hairlineWidth,
-                                                marginTop: 10,
-                                                width: 320
-                                            }}
-                                        />
                                         <View style={{ flexDirection: "row" }}>
                                             <Thumbnail
                                                 square
@@ -86,16 +78,55 @@ export default ({ navigation }) => {
                                         </View>
                                         <View style={{ flexDirection: "row" }}>
                                             <View style={{ flex: 0.1 }}>
-                                                <Text>adjh</Text>
+                                                <Icon
+                                                name="long-arrow-down"
+                                                type="FontAwesome"
+                                                style={{fontSize: 45, marginTop: 30, color: "grey"}} 
+                                                />
                                             </View>
                                             <View style={{ flex: 1 }}>
                                                 <Text style={{ fontWeight: "bold", marginTop: 10 }}>06.00 CGK</Text>
                                                 <Text style={{ color: "grey", marginTop: 10 }}>1j 50m (langsung)</Text>
                                                 <View style={{ flex: 1, flexDirection: "row", marginTop: 10,  }}>
                                                     <Text style={{ fontWeight: "bold" }}>08.50 DPS</Text>
-                                                    <View style={{ flexDirection: "row", marginLeft: 60  }}>
+                                                    <View style={{ flexDirection: "row", marginLeft: 60, marginTop: -5  }}>
                                                         <Text style={{ fontSize: 20, color: "#0064D3", fontWeight: "bold" }}>IDR 982.800</Text>
-                                                        <Text style={{ color: "grey" }}>/pax</Text>
+                                                        <Text style={{ color: "grey", marginTop: 3 }}>/pax</Text>
+                                                    </View>
+                                                </View>
+
+                                            </View>
+                                        </View>
+                                    </View>
+                                </CardItem>
+                            </Card>
+                            <Card style={styles.cardList}>
+                                <CardItem header button onPress={() => navigation.navigate('RoomDetail')} >
+                                    <View style={{ flex: 1 }}>
+                                        <View style={{ flexDirection: "row" }}>
+                                            <Thumbnail
+                                                square
+                                                source={citilink}
+                                                style={styles.image}
+                                            />
+                                            <Text style={{ color: "grey", marginTop: 7, marginLeft: 5, fontSize: 15 }}>Citilink Indonesia</Text>
+                                        </View>
+                                        <View style={{ flexDirection: "row" }}>
+                                            <View style={{ flex: 0.1 }}>
+                                                <Icon
+                                                name="long-arrow-down"
+                                                type="FontAwesome"
+                                                style={{fontSize: 45, marginTop: 30, color: "grey"}} 
+                                                />
+                                            </View>
+                                            <View style={{ flex: 1 }}>
+                                                <Text style={{ fontWeight: "bold", marginTop: 10 }}>07.00 CGK</Text>
+                                                <Text style={{ color: "grey", marginTop: 10 }}>1j 50m (langsung)</Text>
+                                                <View style={{ flex: 1, flexDirection: "row", marginTop: 10,  }}>
+                                                    <Text style={{ fontWeight: "bold" }}>09.50 DPS</Text>
+                                                    <View style={{ flexDirection: "row", marginLeft: 60, marginTop: -5  }}>
+                                                        <Text style={{ fontSize: 20, color: "#0064D3", fontWeight: "bold" }}>IDR 800.800</Text>
+                                                        <Text style={{ color: "grey", marginTop: 3 }}>/pax</Text>
                                                     </View>
                                                 </View>
 
