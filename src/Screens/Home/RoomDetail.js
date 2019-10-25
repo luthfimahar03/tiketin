@@ -114,7 +114,7 @@ export default props => {
             </View>
             {/*{'      '}*/}
             <View style={{width: '50%'}}>
-                <Text style={{fontSize: 25, color: '#0065D1'}}>
+                <Text style={{fontSize: 20, color: '#0065D1'}}>
                     {'      '}IDR 200.000
                 </Text>
             </View>
