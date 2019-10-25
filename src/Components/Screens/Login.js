@@ -154,11 +154,16 @@ export default ({ navigation }) => {
                             justifyContent: 'flex-end'
                         }}
                     >
-                        <View>
+                        <Button
+                            transparent
+                            onPress={() => {
+                                navigation.navigate('ForgotPassword')
+                            }}
+                        >
                             <Text style={{ fontSize: 14, color: '#0653ff' }}>
                                 Lupa kata sandi?
                             </Text>
-                        </View>
+                        </Button>
                     </View>
                     <View>
                         <Button
