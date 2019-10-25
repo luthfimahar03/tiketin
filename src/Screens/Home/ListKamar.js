@@ -83,7 +83,7 @@ export default ({ navigation }) => {
                         </View>
                         <View style={styles.listContainer}>
                             <Card style={styles.cardList}>
-                                <CardItem header button >
+                                <CardItem header button onPress={() => navigation.navigate('RoomDetail')} >
                                     <View style={{ flex: 1 }}>
                                         <View style={{ flexDirection: "row" }}>
                                             <View style={{ flex: 1 }}>
