@@ -16,15 +16,17 @@ export default props => {
 
     useEffect(() => {
         const idCity = props.navigation.getParam('idCity')
-        console.log(`${API_BASEURL}/hotel?id_city=${idCity}`);
-        http.get(`${API_BASEURL}/hotel?id_city=${idCity}`)
-            .then(res => {
-                setCities(res.data.data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-            .finally(() => showLoading(false))
+        const checkIn = props.navigation.getParam('checkIn').toISOString().split('T')[0]
+        const checkOut = props.navigation.getParam('checkOut').toISOString().split('T')[0]
+        
+        http.get(`${API_BASEURL}/hotel?id_city=${idCity}&from_date=${checkIn}&to_date=${checkOut}`)
+        .then(res => {
+            setCities(res.data.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+        .finally(() => showLoading(false))
     }, [])
 
     return (
