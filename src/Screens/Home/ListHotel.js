@@ -76,7 +76,7 @@ export default ({ navigation }) => {
                         </View>
                         <View style={styles.listContainer}>
                             <Card style={styles.cardList}>
-                                <CardItem header button onPress={() => alert('This is Card Header')}>
+                                <CardItem header button onPress={() => navigation.navigate('HotelDetail')}>
                                     <View
                                         style={{ flex: 0.8, flexWrap: 'wrap' }}
                                     >
