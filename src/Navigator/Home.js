@@ -20,7 +20,6 @@ export default createStackNavigator(
         RoomDetail,
         ListKamar,
         ListMobil,
-        ListOrderHotel
     },
     {
         headerMode: 'none',

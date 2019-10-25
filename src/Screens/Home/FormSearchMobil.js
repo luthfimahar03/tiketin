@@ -1,22 +1,41 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { StyleSheet, ScrollView } from 'react-native'
 import {
     Button,
     Icon,
+    DatePicker,
     Content,
     View,
     Item,
     Input,
     Label,
+    Picker,
     Card,
     CardItem,
     Text
 } from 'native-base'
+import {API_BASEURL} from 'react-native-dotenv'
+import http from  '../../Helpers/Http'
 import Header from '../../Components/Base/Header'
 import Carousel from '../../Components/Base/Carousel'
 import Color from '../../Assets/Color'
 
 export default ({ navigation }) => {
+    const [Cities, setCities] = useState([])
+    const [Lokasi, setLokasi] = useState('')
+    const [Durasi, setDurasi] = useState('')
+
+    const getCities = () => {
+        http.get(`${API_BASEURL}/city`)
+        .then(res => {
+            setCities(res.data.data)
+        })
+    }
+
+    useEffect(() => {
+      getCities()
+    }, [])
+
     return (
         <>
             <Header
@@ -31,16 +50,47 @@ export default ({ navigation }) => {
                 <View style={styles.cardForm}>
                     <View style={{width: '100%', flexWrap: 'wrap', flexDirection: 'row', marginVertical: 10}}>
                         <Icon name='enviromento' type='AntDesign' style={{margin: 10, fontSize: 40, color: '#4a4a4a'}}></Icon>
-                        <Item floatingLabel style={{width: '80%', alignSelf: 'flex-end', marginLeft: 5}}>
+                        {/*<Item floatingLabel style={{width: '80%', alignSelf: 'flex-end', marginLeft: 5}}>
                             <Label>Lokasi Penjemputan</Label>
                             <Input />
+                        </Item>*/}
+                        <Item picker style={{width: '80%', alignSelf: 'flex-end', marginLeft: 5}}>
+                            <Picker
+                                mode="dropdown"
+                                iosIcon={<Icon name="arrow-down" />}
+                                style={{ width: undefined }}
+                                placeholder="Select your SIM"
+                                placeholderStyle={{ color: "#bfc6ea" }}
+                                placeholderIconColor="#007aff"
+                                selectedValue={Lokasi}
+                                onValueChange={(value) => setLokasi(value)}
+                                >
+                                {
+                                    Cities.map(item => {
+                                        return(
+                                            <Picker.Item label={item.name} value={item.id} />
+                                        )
+                                    })
+                                }
+                            </Picker>
                         </Item>
                     </View>
                     <View style={{width: '100%', flexWrap: 'wrap', flexDirection: 'row', marginVertical: 10}}>
                         <Icon name='calendar' type='AntDesign' style={{margin: 10, fontSize: 40, color: '#4a4a4a'}}></Icon>
-                        <Item floatingLabel style={{width: '80%', alignSelf: 'flex-end', marginLeft: 5}}>
-                            <Label>Tanggal Penjemputan</Label>
-                            <Input />
+                        <Item style={{width: '80%', alignSelf: 'flex-end', marginLeft: 5}}>
+                            <DatePicker
+                                defaultDate={new Date()}
+                                locale={"en"}
+                                timeZoneOffsetInMinutes={undefined}
+                                modalTransparent={false}
+                                animationType={"fade"}
+                                androidMode={"default"}
+                                placeHolderText="Select date"
+                                textStyle={{ color: "green" }}
+                                placeHolderTextStyle={{ color: "#d3d3d3" }}
+                                onDateChange={(value) => {setDurasi(value)}}
+                                disabled={false}
+                                />
                         </Item>
                     </View>
                     <View style={{width: '100%', flexWrap: 'wrap', flexDirection: 'row', marginVertical: 10}}>
@@ -60,7 +110,9 @@ export default ({ navigation }) => {
                     <Button
                         block
                         style={styles.btnSearch}
-                        onPress={() => navigation.navigate('ListHotel')}
+                        onPress={() => navigation.navigate('ListMobil', {
+                            idCity : Lokasi
+                        })}
                     >
                         <Text style={{ fontWeight: 'bold', color: 'white' }}>
                             Cari Mobil
