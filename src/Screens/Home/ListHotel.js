@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import { Text, Button, Icon, View, Content, Card, CardItem, Thumbnail } from 'native-base'
 import { Dimensions, StyleSheet } from 'react-native'
 import Header from '../../Components/Base/Header'
-import rk from '../../Assets/Images/rk.jpg'
 import {API_BASEURL} from 'react-native-dotenv'
 import http from  '../../Helpers/Http'
 
@@ -102,7 +101,14 @@ export default props => {
                                 Cities.map(item => {
                                     return(
                                         <Card style={styles.cardList}>
-                                            <CardItem header button onPress={() => props.navigation.navigate('HotelDetail')}>
+                                            <CardItem header button onPress={() => props.navigation.navigate('HotelDetail', {
+                                                    id: item.id,
+                                                    title: item.name,
+                                                    image: item.image_url,
+                                                    price: item.price,
+                                                    checkIn: props.navigation.getParam('checkIn'),
+                                                    checkOut: props.navigation.getParam('checkOut')
+                                                })}>
                                                 <View
                                                     style={{ flex: 0.8, flexWrap: 'wrap' }}
                                                 >
@@ -143,7 +149,7 @@ export default props => {
                                                     <Text style={{fontSize: 13, textDecorationLine: 'line-through', color: '#a2a2a2'}}>Rp. 1.200.000,-</Text>
                                                 </View>
                                                 <View style={{width: '100%', }}>
-                                                    <Text style={{fontSize: 19, color: '#0065D1', marginVertical: 10}}>IDR 1.000.000,- </Text><Text style={{fontSize: 12, color: '#a2a2a2'}}>/ kamar / malam</Text>
+                                                    <Text style={{fontSize: 19, color: '#0065D1', marginVertical: 10}}>IDR {item.price} </Text><Text style={{fontSize: 12, color: '#a2a2a2'}}>/ kamar / malam</Text>
                                                 </View>
                                                 <View style={{width: '100%', paddingHorizontal: 10, marginVertical: 15}}>
                                                     <View style={{backgroundColor: '#E5EDF3', borderStyle: 'dashed', borderColor: '#0065D1', borderWidth: 1, padding: 2, flex: 0.8, flexDirection: 'row', justifyContent:'center', alignItems: 'center', borderRadius: 3, flexWrap: 'wrap'}}>
