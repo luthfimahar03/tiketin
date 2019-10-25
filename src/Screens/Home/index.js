@@ -72,6 +72,9 @@ export default ({ navigation }) => {
                         <TicketCard
                             text="Sewa Mobil"
                             source={require('../../Assets/Images/Icons/mobil.png')}
+                            onPress={() => {
+                                navigation.navigate('FormSearchMobil')
+                            }}
                         />
                         <TicketCard
                             text="Event"
