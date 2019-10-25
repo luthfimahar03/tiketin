@@ -49,8 +49,13 @@ export default ({ navigation }) => {
             <Content style={{padding: 10 }}>
                 <View style={styles.cardForm}>
                     <View style={{width: '100%', flexWrap: 'wrap', flexDirection: 'row', marginVertical: 10}}>
+<<<<<<< HEAD
                         <Icon name='enviromento' type='AntDesign' style={{margin: 10, fontSize: 40, color: '#4a4a4a'}}></Icon>
                         {/*<Item floatingLabel style={{width: '80%', alignSelf: 'flex-end', marginLeft: 5}}>
+=======
+                        <Icon name='enviromento' type='AntDesign' style={{margin: 5, fontSize: 30, color: '#4a4a4a'}}></Icon>
+                        <Item floatingLabel style={{width: '80%', alignSelf: 'flex-end', marginLeft: 5}}>
+>>>>>>> development
                             <Label>Lokasi Penjemputan</Label>
                             <Input />
                         </Item>*/}
@@ -76,6 +81,7 @@ export default ({ navigation }) => {
                         </Item>
                     </View>
                     <View style={{width: '100%', flexWrap: 'wrap', flexDirection: 'row', marginVertical: 10}}>
+<<<<<<< HEAD
                         <Icon name='calendar' type='AntDesign' style={{margin: 10, fontSize: 40, color: '#4a4a4a'}}></Icon>
                         <Item style={{width: '80%', alignSelf: 'flex-end', marginLeft: 5}}>
                             <DatePicker
@@ -91,17 +97,23 @@ export default ({ navigation }) => {
                                 onDateChange={(value) => {setDurasi(value)}}
                                 disabled={false}
                                 />
+=======
+                        <Icon name='calendar' type='AntDesign' style={{margin: 5, fontSize: 30, color: '#4a4a4a'}}></Icon>
+                        <Item floatingLabel style={{width: '80%', alignSelf: 'flex-end', marginLeft: 5}}>
+                            <Label>Tanggal Penjemputan</Label>
+                            <Input />
+>>>>>>> development
                         </Item>
                     </View>
                     <View style={{width: '100%', flexWrap: 'wrap', flexDirection: 'row', marginVertical: 10}}>
-                        <Icon name='clockcircleo' type='AntDesign' style={{margin: 10, fontSize: 40, color: '#4a4a4a'}}></Icon>
+                        <Icon name='clockcircleo' type='AntDesign' style={{margin: 5, fontSize: 30, color: '#4a4a4a'}}></Icon>
                         <Item floatingLabel style={{width: '80%', alignSelf: 'flex-end', marginLeft: 5}}>
                             <Label>Durasi</Label>
                             <Input />
                         </Item>
                     </View>
                     <View style={{width: '100%', flexWrap: 'wrap', flexDirection: 'row', marginVertical: 10}}>
-                        <Icon name='car' type='AntDesign' style={{margin: 10, fontSize: 40, color: '#4a4a4a'}}></Icon>
+                        <Icon name='car' type='AntDesign' style={{margin: 5, fontSize: 30, color: '#4a4a4a'}}></Icon>
                         <Item floatingLabel style={{width: '80%', alignSelf: 'flex-end', marginLeft: 5}}>
                             <Label>Jumlah Mobil</Label>
                             <Input />
@@ -144,7 +156,7 @@ export default ({ navigation }) => {
                     </View>
                 </View>
                 <View>
-                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{paddingHorizontal: 20}}>
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{padding: 30, marginTop: -40}}>
                         <Card>
                             <CardItem>
                                 <View style={{flex: 1, flexWrap: 'wrap', width: 200}}>
