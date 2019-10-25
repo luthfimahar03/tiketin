@@ -21,7 +21,7 @@ export default ({ navigate, navigationKey }) => {
                 <Button
                     block
                     style={styles.btnLogin}
-                    onPress={() => navigate('Login')}
+                    onPress={() => navigate('Account')}
                 >
                     <Text style={{ color: Color.Base }}>LOG IN</Text>
                 </Button>
