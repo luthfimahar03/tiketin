@@ -1,112 +1,147 @@
-import React from 'react'
-import { Text, Button, Icon, View, Content, Card, CardItem, Thumbnail, Right, Row } from 'native-base'
-import { Dimensions, StyleSheet } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { StyleSheet } from 'react-native'
+import {
+    Button,
+    Icon,
+    Content,
+    View,
+    Item,
+    Input,
+    Label,
+    Text,
+    Picker,
+    DatePicker
+} from 'native-base'
 import Header from '../../Components/Base/Header'
-import citilink from '../../Assets/Images/citilink.png'
+import Carousel from '../../Components/Base/Carousel'
+import Color from '../../Assets/Color'
 
 export default ({ navigation }) => {
-    const screenHeight = Math.round(Dimensions.get('window').height)
-    const screenWidth = Math.round(Dimensions.get('window').width)
+    const [From, setFrom] = useState('')
+    const [Arrival, setArrival] = useState('')
+    const [Person, setPerson] = useState('')
+    const [ClassFlight, setClassFlight] = useState('')
+    const [CheckIn, setCheckIn] = useState('')
 
     return (
         <>
-            <Content>
-                <View style={styles.wrapper}>
-                    <Header
-                        detail
-                        height={70}
-                        leftComponent={
-                            <Button
-                                transparent
-                                onPress={() => navigation.goBack()
-                                }
-                                style={{ marginTop: -10 }}
+            <Header
+                title="Pesawat"
+                leftComponent={
+                    <Button transparent onPress={() => navigation.goBack()}>
+                        <Icon name="arrow-back" />
+                    </Button>
+                }
+            />
+            <Carousel height={80} />
+            <Content style={{ marginTop: -80, padding: 10 }}>
+                <View style={styles.cardForm}>
+                    <Text style={{ color: "grey", marginLeft: 5 }}>Dari</Text>
+                    <View style={{ width: '100%', flexWrap: 'wrap', flexDirection: 'row', marginVertical: 0 }}>
+                        <Icon name='plane-departure' type='FontAwesome5' style={{ margin: 5, marginTop: 20, fontSize: 25, color: '#0065D1' }}></Icon>
+                        <Item picker style={{ width: '80%', alignSelf: 'flex-end', marginLeft: 5 }}>
+                            <Picker
+                                mode="dropdown"
+                                iosIcon={<Icon name="arrow-down" />}
+                                style={{ width: undefined }}
+                                placeholder="Select your SIM"
+                                placeholderStyle={{ color: "#bfc6ea" }}
+                                placeholderIconColor="#007aff"
+                                selectedValue={From}
+                                onValueChange={(value) => setFrom(value)}
                             >
-                                <Icon
-                                    name="arrow-back"
-                                    style={{ color: 'white' }}
-                                />
-                            </Button>
-                        }
+                                <Picker.Item label="Jakarta" value="key0" />
+                                <Picker.Item label="Bali" value="key1" />
 
-                        centerComponent={
-                            <View style={{ flexDirection: 'column' }}>
-                                <View style={{ flexDirection: "row" }}>
-                                    <Text style={{ color: 'white', marginTop: 1, marginBottom: 4 }}>Jakarta </Text>
-                                    <Icon
-                                        name="arrowright"
-                                        type="AntDesign"
-                                        style={{ color: "white", fontSize: 20, marginTop: 2 }}
-                                    />
-                                    <Text style={{ color: 'white', marginTop: 1, marginBottom: 4 }}> Denpasar</Text>
-                                </View>
-
-                                <View style={{ flexDirection: 'row', padding: 5, marginLeft: -10 }}>
-                                    <Text style={styles.headerSub}>JKTC</Text>
-                                    <Icon
-                                        name="arrowright"
-                                        type="AntDesign"
-                                        style={styles.headerSub}
-                                    />
-                                    <Text style={styles.headerSub}>DPS</Text>
-                                    <Text style={styles.headerSub}>|</Text>
-                                    <Text style={styles.headerSub}>26 Okt</Text>
-                                    <Text style={styles.headerSub}>|</Text>
-                                    <Icon
-                                        type="FontAwesome5"
-                                        name="user"
-                                        style={styles.headerSub}
-                                    />
-                                    <Text style={styles.headerSub}>2</Text>
-                                </View>
-                            </View>
-                        }
-                    />
-                    <View style={styles.cardContainer}>
-                        <View style={styles.listContainer}>
-                            <Card style={styles.cardList}>
-                                <CardItem header button onPress={() => navigation.navigate('RoomDetail')} >
-                                    <View style={{ flex: 1 }}>
-                                        <Text>Menampilkan penerbangan terbaik</Text>
-                                        <View
-                                            style={{
-                                                borderBottomColor: 'black',
-                                                borderBottomWidth: StyleSheet.hairlineWidth,
-                                                marginTop: 10,
-                                                width: 320
-                                            }}
-                                        />
-                                        <View style={{ flexDirection: "row" }}>
-                                            <Thumbnail
-                                                square
-                                                source={citilink}
-                                                style={styles.image}
-                                            />
-                                            <Text style={{ color: "grey", marginTop: 7, marginLeft: 5, fontSize: 15 }}>Citilink Indonesia</Text>
-                                        </View>
-                                        <View style={{ flexDirection: "row" }}>
-                                            <View style={{ flex: 0.1 }}>
-                                                <Text>adjh</Text>
-                                            </View>
-                                            <View style={{ flex: 1 }}>
-                                                <Text style={{ fontWeight: "bold", marginTop: 10 }}>06.00 CGK</Text>
-                                                <Text style={{ color: "grey", marginTop: 10 }}>1j 50m (langsung)</Text>
-                                                <View style={{ flex: 1, flexDirection: "row", marginTop: 10,  }}>
-                                                    <Text style={{ fontWeight: "bold" }}>08.50 DPS</Text>
-                                                    <View style={{ flexDirection: "row", marginLeft: 60  }}>
-                                                        <Text style={{ fontSize: 20, color: "#0064D3", fontWeight: "bold" }}>IDR 982.800</Text>
-                                                        <Text style={{ color: "grey" }}>/pax</Text>
-                                                    </View>
-                                                </View>
-
-                                            </View>
-                                        </View>
-                                    </View>
-                                </CardItem>
-                            </Card>
-                        </View>
-
+                            </Picker>
+                        </Item>
                     </View>
+                    <Text style={{ color: "grey", marginLeft: 5, marginTop: 10 }}>Ke</Text>
+                    <View style={{ width: '100%', flexWrap: 'wrap', flexDirection: 'row', marginVertical: 0 }}>
+                        <Icon name='plane-arrival' type='FontAwesome5' style={{ margin: 5, marginTop: 20, fontSize: 25, color: '#0065D1' }}></Icon>
+                        <Item picker style={{ width: '80%', alignSelf: 'flex-end', marginLeft: 5 }}>
+                            <Picker
+                                mode="dropdown"
+                                iosIcon={<Icon name="arrow-down" />}
+                                style={{ width: undefined }}
+                                placeholder="Select your SIM"
+                                placeholderStyle={{ color: "#bfc6ea" }}
+                                placeholderIconColor="#007aff"
+                                selectedValue={Arrival}
+                                onValueChange={(value) => setArrival(value)}
+                            >
+                                <Picker.Item label="Jakarta" value="key0" />
+                                <Picker.Item label="Bali" value="key1" />
+
+                            </Picker>
+                        </Item>
+                    </View>
+                    <Text style={{ color: "grey", marginLeft: 5, marginTop: 10 }}>Pergi</Text>
+                    <View style={{ width: '100%', flexWrap: 'wrap', flexDirection: 'row', marginVertical: 0 }}>
+                        <Icon name='date-range' type='MaterialIcons' style={{ margin: 5, marginTop: 20, fontSize: 25, color: '#0065D1' }}></Icon>
+                        <DatePicker
+                            defaultDate={new Date()}
+                            locale={"en"}
+                            timeZoneOffsetInMinutes={undefined}
+                            modalTransparent={false}
+                            animationType={"fade"}
+                            androidMode={"default"}
+                            placeHolderText="Select date"
+                            textStyle={{ color: "black" }}
+                            placeHolderTextStyle={{ color: "#d3d3d3" }}
+                            onDateChange={(value) => {setCheckIn(value)}}
+                            disabled={false}
+                        />
+                    </View>
+                    <Text style={{ color: "grey", marginLeft: 5, marginTop: 10 }}>Penumpang</Text>
+                    <View style={{ width: '100%', flexWrap: 'wrap', flexDirection: 'row', marginVertical: 0 }}>
+                        <Icon name='user' type='Feather' style={{ margin: 5, marginTop: 20, fontSize: 25, color: '#0065D1' }}></Icon>
+                        <Item picker style={{ width: '80%', alignSelf: 'flex-end', marginLeft: 5 }}>
+                            <Picker
+                                mode="dropdown"
+                                iosIcon={<Icon name="arrow-down" />}
+                                style={{ width: undefined }}
+                                placeholder="Select your SIM"
+                                placeholderStyle={{ color: "#bfc6ea" }}
+                                placeholderIconColor="#007aff"
+                                selectedValue={Person}
+                                onValueChange={(value) => setPerson(value)}
+                            >
+                                <Picker.Item label="1" value="key0" />
+                                <Picker.Item label="2" value="key1" />
+
+                            </Picker>
+                        </Item>
+                    </View>
+                    <Text style={{ color: "grey", marginLeft: 5, marginTop: 10 }}>Kelas Kabin</Text>
+                    <View style={{ width: '100%', flexWrap: 'wrap', flexDirection: 'row', marginVertical: 0 }}>
+                        <Icon name='plane-arrival' type='FontAwesome5' style={{ margin: 5, marginTop: 20, fontSize: 25, color: '#0065D1' }}></Icon>
+                        <Item picker style={{ width: '80%', alignSelf: 'flex-end', marginLeft: 5 }}>
+                            <Picker
+                                mode="dropdown"
+                                iosIcon={<Icon name="arrow-down" />}
+                                style={{ width: undefined }}
+                                placeholder="Select your SIM"
+                                placeholderStyle={{ color: "#bfc6ea" }}
+                                placeholderIconColor="#007aff"
+                                selectedValue={ClassFlight}
+                                onValueChange={(value) => setClassFlight(value)}
+                            >
+                                <Picker.Item label="Ekonomi" value="key0" />
+                                <Picker.Item label="Bisnis" value="key1" />
+
+                            </Picker>
+                        </Item>
+                    </View>
+                    <Button
+                        block
+                        style={styles.btnSearch}
+                        onPress={() => navigation.navigate('ListPesawat')}
+                    >
+                        <Text style={{ fontWeight: 'bold', color: Color.Base }}>
+                            Cari Penerbangan
+                        </Text>
+                    </Button>
                 </View>
             </Content>
         </>
@@ -114,48 +149,32 @@ export default ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-    image: {
-        width: '100%',
-        height: '100%',
-        height: 15,
-        width: 40,
-        marginTop: 10
+    cardForm: {
+        borderRadius: 10,
+        backgroundColor: '#fff',
+        padding: 15,
+        height: 500
     },
-    cardList: {
-        width: '100%',
-        elevation: 0,
-        borderWidth: 0,
-        shadowOpacity: 0
-    },
-    listContainer: {
+    checkInContainer: {
         flexDirection: 'row',
-        flexWrap: 'wrap',
-        padding: 5,
-        marginTop: -10,
-        backgroundColor: '#F7F7FA',
-
+        marginTop: 10,
+        width: '100%'
     },
-    wrapper: {
+    btnSearch: {
+        marginTop: 20,
+        borderRadius: 30,
+        backgroundColor: Color.Primary
+    },
+    countCheckInDay: {
         flex: 1,
-        flexDirection: 'column',
-        color: '#374259',
-        backgroundColor: '#0065D1',
-
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    headerSub: {
-        color: 'white',
-        fontSize: 11,
-        marginHorizontal: 5
+    subTop: {
+        color: "grey"
     },
-    headerSubText: {
-        color: '#0064D3',
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        fontSize: 11
-    },
-    cardContainer: {
-        backgroundColor: '#F6F6F8',
-        flexDirection: 'column',
-        borderRadius: 20
+    icon: {
+        color: "blue",
+        marginTop: 30
     }
 })
