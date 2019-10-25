@@ -3,20 +3,21 @@ import {
   Animated,
   Platform,
   StatusBar,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
   RefreshControl,
 } from 'react-native'
-import { Icon, Badge } from 'native-base'
+import { Icon, Badge, Button } from 'native-base'
 import Carousel from '../../Components/Base/Carousel'
 
 const HEADER_MAX_HEIGHT = 300;
 const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
-export default props => {
+export default (props) => {
     let state = {
       scrollY: new Animated.Value(
         // iOS has negative initial scroll value because content inset...
@@ -29,14 +30,14 @@ export default props => {
     const data = Array.from({ length: 30 });
     return (
       <View style={styles.scrollViewContent}>
-          <View style={{width: '100%', backgroundColor: 'red', padding: 15, flexWrap: 'wrap', flexDirection: 'row'}}>
-              <Icon name='warning' type='FontAwesome' style={{fontSize: 15, width: '10%', padding: 10, backgroundColor: 'blue'}} />
-              <Text style={{fontSize: 20, width:'90%', backgroundColor:'blue'}}>Sisa 1. Suka kamar ini? Cepat pesan</Text>
+          <View style={{width: '100%', padding: 15, flexWrap: 'wrap', flexDirection: 'row', backgroundColor: '#ebebeb'}}>
+              <Icon name='warning' type='FontAwesome' style={{fontSize: 15, color: '#ff1046', width: '10%', padding: 10}} />
+              <Text style={{fontSize: 20, color: '#ff1046', width:'90%'}}>Sisa 1. Suka kamar ini? Cepat pesan</Text>
           </View>
-          <View style={{width: '100%', backgroundColor: 'red'}}>
-              <Text style={{fontSize: 25, width:'100%', backgroundColor:'blue'}}>Cempaka 5 Villa Dago Private Pool</Text>
+          <View style={{width: '100%', marginTop: 20}}>
+              <Text style={{fontSize: 25, width:'100%'}}>Cempaka 5 Villa Dago Private Pool</Text>
           </View>
-          <View style={{width: '100%', backgroundColor: 'red', flexDirection: 'row', marginVertical: 10}}>
+          <View style={{width: '100%', flexDirection: 'row', marginVertical: 10}}>
               <Icon type='AntDesign' name='star' style={{fontSize:20, color: '#f7fc3a'}} />
               <Icon type='AntDesign' name='star' style={{fontSize:20, color: '#f7fc3a'}} />
               <Icon type='AntDesign' name='star' style={{fontSize:20, color: '#f7fc3a'}} />
@@ -55,11 +56,11 @@ export default props => {
               />
           </View>
           <View style={{padding: 20, width: '100%'}}>
-              <Text style={{fontSize: 19}}>
+              <Text style={{fontSize: 20}}>
                   Fasilitas
               </Text>
           </View>
-          <View style={{width: '100%', backgroundColor: 'orange', padding: 20, flexDirection: 'row'}}>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{width: '100%', padding: 20, flexDirection: 'row'}}>
               <TouchableOpacity
                   style={{
                       borderWidth:1,
@@ -73,7 +74,8 @@ export default props => {
                       borderRadius:50,
                   }}
                   >
-                  <Icon name={"chevron-right"}  size={30} color="#01a699" />
+                  <Icon name={"parking"} type="FontAwesome5"  size={30} color="#01a699" />
+                  <Text>Tempat parkir</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -89,7 +91,8 @@ export default props => {
                       borderRadius:50,
                   }}
                   >
-                  <Icon name={"chevron-right"}  size={30} color="#01a699" />
+                  <Icon name={"swimming-pool"} type="FontAwesome5" size={30} color="#01a699" />
+                  <Text>Pool</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -105,9 +108,34 @@ export default props => {
                       borderRadius:50,
                   }}
                   >
-                  <Icon name={"chevron-right"}  size={30} color="#01a699" />
+                  <Icon name={"wifi"} type="FontAwesome5" size={30} color="#01a699" />
+                  <Text>Wifi</Text>
               </TouchableOpacity>
+          </ScrollView>
+          <View style={{width: '100%', padding: 20}}>
+              <Text style={{fontSize: 15}}>Lihat Semua Fasilitas</Text>
           </View>
+          <View style={{width: '100%', padding: 20}}>
+              <Text style={{fontSize: 20}}>Tentang Hotel Ini</Text>
+          </View>
+          <View style={{width: '100%', padding: 20}}>
+              <Text style={{fontSize: 18}}>lkajfdlkadsjf;lksajfd;ajfd;lkadsjf;lkajfd;lasjaslkdjaslkdjsalkdjsalkdjalksdlkasjdf;lkajfd;lkjas;lkfjasjsadf</Text>
+          </View>
+          <View style={{width: '100%', padding: 20}}>
+              <Text style={{fontSize: 20}}>Harga</Text>
+          </View>
+          <View style={{width: '100%', paddingHorizontal: 20}}>
+              <Text style={{fontSize: 20, color: '#0065D1'}}>Dari: {' '} IDR 624.000 /Kamar/Malam</Text>
+          </View>
+          <Button
+              block
+              style={styles.btnSearch}
+              onPress={() => props.navigation.navigate('ListKamar')}
+          >
+              <Text style={{ fontWeight: 'bold', color: 'white' }}>
+                  Pilih Kamar
+              </Text>
+          </Button>
       </View>
     );
   }
@@ -137,7 +165,7 @@ export default props => {
 
     const titleScale = scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-      outputRange: [1, 1, 0.8],
+      outputRange: [1, 1, 0.9],
       extrapolate: 'clamp',
     });
     const titleTranslate = scrollY.interpolate({
@@ -210,7 +238,15 @@ export default props => {
             },
           ]}
         >
-          <Text style={styles.title}>Title</Text>
+        <View style={{flex: 1, width: '100%', paddingHorizontal: 20}}>
+            <Button transparent>
+                <Icon
+                    onPress={() => props.navigation.goBack()}
+                    name="arrow-back"
+                    style={{ color: 'white' }}
+                    />
+            </Button>
+        </View>
         </Animated.View>
       </View>
   )
@@ -223,6 +259,12 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+  },
+  btnSearch: {
+      margin: 20,
+      borderRadius: 30,
+
+      backgroundColor: '#FC7400'
   },
   header: {
     position: 'absolute',
