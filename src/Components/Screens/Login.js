@@ -16,7 +16,7 @@ import {
     Spinner
 } from 'native-base'
 import { login } from '../../Redux/Actions/Auth'
-import Header from '../../Components/Base/Header'
+import Header from '../Base/Header'
 import facebook from '../../Assets/Images/facebook.png'
 import google from '../../Assets/Images/google.png'
 import Color from '../../Assets/Color'
@@ -108,14 +108,7 @@ export default ({ navigation }) => {
 
     return (
         <>
-            <Header
-                title="Masuk"
-                leftComponent={
-                    <Button transparent onPress={() => navigation.goBack()}>
-                        <Icon name="arrow-back" />
-                    </Button>
-                }
-            />
+            <Header title="Masuk" />
             <Content>
                 <View style={{ paddingVertical: 15, paddingHorizontal: 30 }}>
                     <Text style={styles.titleStyle}>

@@ -1,7 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Text, Icon, Button, Content } from 'native-base'
+import { Content } from 'native-base'
 import Auth from '../../Components/Base/Auth'
+import HistoryCard from '../../Components/Ticket/HistoryCard'
 
 export default ({ navigation }) => {
     const isLoggedIn = useSelector(({ auth }) => auth.loggedIn)
@@ -21,7 +22,9 @@ export default ({ navigation }) => {
 
     return (
         <>
-            <Text>Hello World</Text>
+            <Content padder>
+                <HistoryCard icon="plane" type="Fligts" />
+            </Content>
         </>
     )
 }
