@@ -52,6 +52,9 @@ export default ({ navigation }) => {
                         <TicketCard
                             text="Pesawat"
                             source={require('../../Assets/Images/Icons/pesawat.png')}
+                            onPress={() => {
+                                navigation.navigate('FormSearchPesawat')
+                            }}
                         />
                         <TicketCard
                             text="Hotel"
@@ -61,12 +64,15 @@ export default ({ navigation }) => {
                             }}
                         />
                         <TicketCard
-                            text="Kereta Api"
-                            source={require('../../Assets/Images/Icons/kereta-api.png')}
-                        />
-                        <TicketCard
                             text="Sewa Mobil"
                             source={require('../../Assets/Images/Icons/mobil.png')}
+                            onPress={() => {
+                                navigation.navigate('FormSearchMobil')
+                            }}
+                        />
+                        <TicketCard
+                            text="Kereta Api"
+                            source={require('../../Assets/Images/Icons/kereta-api.png')}
                         />
                         <TicketCard
                             text="Event"
