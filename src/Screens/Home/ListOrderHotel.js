@@ -29,13 +29,8 @@ export default ({ navigation }) => {
                         centerComponent={
                             <View style={{ flexDirection: 'column' }}>
                                 <Text style={{ color: 'white' }}>
-                                    Aceh
+                                    My Order
                                 </Text>
-                                <View style={{flexDirection: "row"}} >
-                                    <Text style={styles.headerSub}>25 Oktober 2019</Text>
-                                    <Text style={styles.headerSub}>-</Text>
-                                    <Text style={styles.headerSub}>25 Oktober 2019</Text>
-                                </View>
                             </View>
                         }
                     />
