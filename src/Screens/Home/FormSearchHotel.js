@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { StyleSheet } from 'react-native'
 import {
     Button,
     Icon,
+    Picker,
+    DatePicker,
     Content,
     View,
     Item,
@@ -10,11 +12,37 @@ import {
     Label,
     Text
 } from 'native-base'
+import {API_BASEURL} from 'react-native-dotenv'
+import http from  '../../Helpers/Http'
 import Header from '../../Components/Base/Header'
 import Carousel from '../../Components/Base/Carousel'
 import Color from '../../Assets/Color'
 
 export default ({ navigation }) => {
+    const [Cities, setCities] = useState([])
+    const [Lokasi, setLokasi] = useState('')
+    const [CheckIn, setCheckIn] = useState('')
+    const [CheckOut, setCheckOut] = useState('')
+    const [Tamu, setTamu] = useState('')
+    const [Filter, setFilter] = useState('')
+
+    // const searchHotel = () => {
+    //     h
+    // }
+
+    const getCities = () => {
+        http.get(`${API_BASEURL}/city`)
+        .then(res => {
+            setCities(res.data.data)
+        })
+    }
+
+    useEffect(() => {
+      getCities()
+    }, [])
+
+    console.log(Lokasi)
+
     return (
         <>
             <Header
@@ -28,40 +56,79 @@ export default ({ navigation }) => {
             <Carousel height={80} />
             <Content style={{ marginTop: -80, padding: 10 }}>
                 <View style={styles.cardForm}>
-                    <Item floatingLabel>
-                        <Label>Nginep ke mana?</Label>
-                        <Input />
+                    <Item picker>
+                        <Picker
+                            mode="dropdown"
+                            iosIcon={<Icon name="arrow-down" />}
+                            style={{ width: undefined }}
+                            placeholder="Select your SIM"
+                            placeholderStyle={{ color: "#bfc6ea" }}
+                            placeholderIconColor="#007aff"
+                            selectedValue={Lokasi}
+                            onValueChange={(value) => setLokasi(value)}
+                            >
+                            {
+                                Cities.map(item => {
+                                    return(
+                                        <Picker.Item label={item.name} value={item.id} />
+                                    )
+                                })
+                            }
+                        </Picker>
                     </Item>
                     <View style={styles.checkInContainer}>
                         <View style={{ flex: 2 }}>
-                            <Item floatingLabel>
-                                <Label>Check-in</Label>
-                                <Input />
-                            </Item>
+                            <DatePicker
+                                defaultDate={new Date()}
+                                locale={"en"}
+                                timeZoneOffsetInMinutes={undefined}
+                                modalTransparent={false}
+                                animationType={"fade"}
+                                androidMode={"default"}
+                                placeHolderText="Select date"
+                                textStyle={{ color: "green" }}
+                                placeHolderTextStyle={{ color: "#d3d3d3" }}
+                                onDateChange={(value) => {setCheckIn(value)}}
+                                disabled={false}
+                                />
                         </View>
                         <View style={styles.countCheckInDay}>
                             <Text style={{ fontSize: 14 }}>3</Text>
                             <Text style={{ fontSize: 14 }}>Malam</Text>
                         </View>
                         <View style={{ flex: 2 }}>
-                            <Item floatingLabel>
-                                <Label>Check-out</Label>
-                                <Input />
-                            </Item>
+                            <DatePicker
+                                defaultDate={new Date()}
+                                locale={"en"}
+                                timeZoneOffsetInMinutes={undefined}
+                                modalTransparent={false}
+                                animationType={"fade"}
+                                androidMode={"default"}
+                                placeHolderText="Select date"
+                                textStyle={{ color: "green" }}
+                                placeHolderTextStyle={{ color: "#d3d3d3" }}
+                                onDateChange={(value) => {setCheckOut(value)}}
+                                disabled={false}
+                                />
                         </View>
                     </View>
                     <Item floatingLabel style={{ marginTop: 10 }}>
-                        <Label>Kamar & Tamu</Label>
-                        <Input />
+                        <Label>Tamu</Label>
+                        <Input onChangeText={(text) => setTamu(text)} value={Tamu} />
                     </Item>
                     <Item floatingLabel style={{ marginTop: 10 }}>
                         <Label>Filter</Label>
-                        <Input />
+                        <Input onChangeText={(text) => setFilter(text)} value={Filter} />
                     </Item>
                     <Button
                         block
                         style={styles.btnSearch}
-                        onPress={() => navigation.navigate('ListHotel')}
+                        onPress={() => navigation.navigate('ListHotel', {
+                            idCity: Lokasi,
+                            checkIn: CheckIn,
+                            checkOut: CheckOut,
+                            Tamu: Tamu
+                        })}
                     >
                         <Text style={{ fontWeight: 'bold', color: Color.Base }}>
                             Cari Hotel

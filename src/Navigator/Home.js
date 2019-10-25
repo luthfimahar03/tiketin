@@ -9,6 +9,8 @@ import ListMobil from '../Screens/Home/ListMobil'
 import FormSearchMobil from '../Screens/Home/FormSearchMobil'
 import HotelDetail from '../Screens/Home/HotelDetail'
 import RoomDetail from '../Screens/Home/RoomDetail'
+import FormSearchPesawat from '../Screens/Home/FormSearchPesawat'
+import ListPesawat from '../Screens/Home/ListPesawat'
 
 export default createStackNavigator(
     {
@@ -19,10 +21,12 @@ export default createStackNavigator(
         HotelDetail,
         RoomDetail,
         ListKamar,
-        ListMobil
+        ListMobil,
+        ListPesawat,
+        FormSearchPesawat
     },
     {
         headerMode: 'none',
-        initialRouteName: 'Home'
+        initialRouteName: "Home"
     }
 )
