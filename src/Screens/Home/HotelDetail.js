@@ -9,6 +9,7 @@ export default ({ navigation }) => {
     return (
         <>
             <Header
+                title="The Alts Hotel"
                 leftComponent={
                     <Button transparent onPress={() => navigation.goBack()}>
                         <Icon name="arrow-back" style={{ color: 'white' }} />
