@@ -1,6 +1,6 @@
 import React from "react";
 import {Animated, Dimensions, Platform, Text, TouchableOpacity, View, StyleSheet} from "react-native";
-import {Body, Header, List, Content, Icon, ListItem as Item, ScrollableTab, Tab, TabHeading, Tabs, Title, Footer} from "native-base"
+import {Body, Header, List, Content, Icon, ListItem as Item, Button, ScrollableTab, Tab, TabHeading, Tabs, Title, Footer} from "native-base"
 import Carousel from '../../Components/Base/Carousel'
 
 const {width: SCREEN_WIDTH} = Dimensions.get("window");
@@ -134,9 +134,9 @@ export default props => {
         {/*<Content>*/}
         <View>
             <Animated.View style={{position: "absolute", width: "100%", backgroundColor: headerBg, zIndex: 1}}>
-                <Header style={{backgroundColor: "transparent"}} hasTabs>
+                <Header style={{backgroundColor: "transparent", margin: 20}} hasTabs>
                     <Body>
-                        <Title>
+                        <Title onPress={() => props.navigation.goBack()}>
                             <Animated.Text style={{color: 'white', fontWeight: "bold"}}>
                                 <Icon name="arrow-back" style={{color: 'white'}}/>
                             </Animated.Text>
@@ -207,14 +207,14 @@ export default props => {
                 }>
                 <Tab heading="Detail Kamar">
                     {/*{tabContent(30, 0)}*/}
-                    <View style={{flex: 1,  padding: 10}}>
+                    <View style={{flex: 1,  padding: 20}}>
                         <View style={{width: '100%'}}>
                             <Text style={{fontSize: 25}}>
                                 Deluxe Double Room Only
                             </Text>
                         </View>
                         <View style={{width: '100%'}}>
-                            <Text style={{fontSize: 15, color: '#4a4a4a'}}>
+                            <Text style={{fontSize: 18, color: '#4a4a4a'}}>
                                 Pembatalan Gratis
                             </Text>
                         </View>
@@ -238,28 +238,28 @@ export default props => {
                             />
                         </View>
                         <View style={{width: '100%'}}>
-                            <Text style={{fontSize: 18, color: '#4a4a4a', fontWeight: 'bold'}}>
+                            <Text style={{fontSize: 20, color: '#4a4a4a', fontWeight: 'bold'}}>
                                 Penawaran Terbatas
                             </Text>
                             <View style={{backgroundColor: '#E5EDF3', width: '50%', borderStyle: 'dashed', borderColor: '#0065D1', borderWidth: 1, padding: 2, flex: 0.8, flexDirection: 'row', marginHorizontal: 20, marginVertical: 20, justifyContent:'center', alignItems: 'center', borderRadius: 3, flexWrap: 'wrap'}}>
                                 <Text style={{fontSize: 15, color: '#0065D1'}}>Discount for 10%</Text>
                             </View>
-                            <Text style={{fontSize: 18, fontWeight: 'bold', color: '#4a4a4a'}}>
+                            <Text style={{fontSize: 20, fontWeight: 'bold', color: '#4a4a4a'}}>
                                 Sekilas tentang kamar
                             </Text>
                         </View>
                         <View style={{width: '100%'}}>
-                            <Text style={{fontSize: 15, color: '#4a4a4a'}}>
+                            <Text style={{fontSize: 18, color: '#4a4a4a'}}>
                                 asdasdasdddddddddddddddddddddasdasdckqicmosdmcaoidcmaoidsmcoaidsmcoisamcosaimcoiasdmcoaimcaoisdmcoisamcaoisdmcoisamcoimdscoaimdcoiasdmcoisadmciasdmc
                             </Text>
                         </View>
                         <View style={{width: '100%'}}>
-                            <Text style={{fontSize: 15, color: '#0065D1'}}>
+                            <Text style={{fontSize: 18, color: '#0065D1'}}>
                                 Selengkapnya
                             </Text>
                         </View>
                         <View style={{width: '100%', marginTop: 20}}>
-                            <Text style={{fontSize: 18, fontWeight: 'bold', color: '#4a4a4a'}}>
+                            <Text style={{fontSize: 20, fontWeight: 'bold', color: '#4a4a4a'}}>
                                 Fasilitas Kamar
                             </Text>
                         </View>
@@ -270,6 +270,17 @@ export default props => {
                             <Text style={{fontSize: 15, color: '#0065D1'}}>
                                 Selengkapnya
                             </Text>
+                        </View>
+                        <View style={{width: '100%'}}>
+                            <Button
+                                block
+                                style={{margin: 20,borderRadius: 30, backgroundColor: '#FC7400'}}
+                                onPress={() => {}}
+                                >
+                                <Text style={{ fontWeight: 'bold', color: 'white' }}>
+                                    Pilih Kamar
+                                </Text>
+                            </Button>
                         </View>
                     </View>
                 </Tab>

@@ -263,7 +263,6 @@ const styles = StyleSheet.create({
   btnSearch: {
       margin: 20,
       borderRadius: 30,
-
       backgroundColor: '#FC7400'
   },
   header: {

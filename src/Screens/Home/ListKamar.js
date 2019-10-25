@@ -10,7 +10,7 @@ export default ({ navigation }) => {
 
     return (
         <>
-            <Content> 
+            <Content>
                 <View style={styles.wrapper}>
                     <Header
                         detail
@@ -176,7 +176,7 @@ export default ({ navigation }) => {
                                                 </Text>
                                             </View>
                                             <View style={{ flex: 0.3 }}>
-                                                <Button transparent style={{ width: 100, marginTop: -10 }} onPress={() => alert("ini detail card")}>
+                                                <Button transparent style={{ width: 100, marginTop: -10 }} onPress={() => navigation.navigate('RoomDetail')}>
                                                     <Text style={{ fontSize: 10, color: "#0064D3", fontWeight: "bold" }}>
                                                         Lihat Detail
                                                 </Text>
