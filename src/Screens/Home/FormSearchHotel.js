@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import {
     Button,
@@ -12,36 +12,34 @@ import {
     Label,
     Text
 } from 'native-base'
-import {API_BASEURL} from 'react-native-dotenv'
-import http from  '../../Helpers/Http'
+import dayjs from 'dayjs'
+import { API_BASEURL } from 'react-native-dotenv'
+import http from '../../Helpers/Http'
 import Header from '../../Components/Base/Header'
 import Carousel from '../../Components/Base/Carousel'
 import Color from '../../Assets/Color'
 
 export default ({ navigation }) => {
     const [Cities, setCities] = useState([])
-    const [Lokasi, setLokasi] = useState('')
+    const [Lokasi, setLokasi] = useState({})
     const [CheckIn, setCheckIn] = useState('')
     const [CheckOut, setCheckOut] = useState('')
     const [Tamu, setTamu] = useState('')
     const [Filter, setFilter] = useState('')
 
-    // const searchHotel = () => {
-    //     h
-    // }
-
     const getCities = () => {
         http.get(`${API_BASEURL}/city`)
-        .then(res => {
-            setCities(res.data.data)
-        })
+            .then(res => {
+                setCities(res.data.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     useEffect(() => {
-      getCities()
+        getCities()
     }, [])
-
-    console.log(Lokasi)
 
     return (
         <>
@@ -68,11 +66,9 @@ export default ({ navigation }) => {
                             onValueChange={(value) => setLokasi(value)}
                             >
                             {
-                                Cities.map(item => {
-                                    return(
-                                        <Picker.Item label={item.name} value={item.id} />
-                                    )
-                                })
+                                Cities.map(item => (
+                                    <Picker.Item key={item.id} label={item.name} value={item} />
+                                ))
                             }
                         </Picker>
                     </Item>
@@ -86,14 +82,20 @@ export default ({ navigation }) => {
                                 animationType={"fade"}
                                 androidMode={"default"}
                                 placeHolderText="Select date"
-                                textStyle={{ color: "green" }}
+                                textStyle={{ color: Color.Base }}
                                 placeHolderTextStyle={{ color: "#d3d3d3" }}
                                 onDateChange={(value) => {setCheckIn(value)}}
                                 disabled={false}
                                 />
                         </View>
                         <View style={styles.countCheckInDay}>
-                            <Text style={{ fontSize: 14 }}>3</Text>
+                            <Text style={{ fontSize: 14 }}>
+                                {
+                                    Number.isNaN(dayjs(CheckOut).diff(CheckIn, 'day'))
+                                        ? 0
+                                        : dayjs(CheckOut).diff(CheckIn, 'day')
+                                }
+                            </Text>
                             <Text style={{ fontSize: 14 }}>Malam</Text>
                         </View>
                         <View style={{ flex: 2 }}>
@@ -105,7 +107,7 @@ export default ({ navigation }) => {
                                 animationType={"fade"}
                                 androidMode={"default"}
                                 placeHolderText="Select date"
-                                textStyle={{ color: "green" }}
+                                textStyle={{ color: Color.Base }}
                                 placeHolderTextStyle={{ color: "#d3d3d3" }}
                                 onDateChange={(value) => {setCheckOut(value)}}
                                 disabled={false}
@@ -124,7 +126,8 @@ export default ({ navigation }) => {
                         block
                         style={styles.btnSearch}
                         onPress={() => navigation.navigate('ListHotel', {
-                            idCity: Lokasi,
+                            city: Lokasi.name,
+                            idCity: Lokasi.id,
                             checkIn: CheckIn,
                             checkOut: CheckOut,
                             Tamu: Tamu
