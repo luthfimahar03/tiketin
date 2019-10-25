@@ -9,18 +9,18 @@ import { ScrollView } from 'react-native-gesture-handler'
 export default ({ navigation }) => {
     const isLoggedIn = useSelector(({ auth }) => auth.loggedIn)
 
-    // if (!isLoggedIn) {
-    //     return (
-    //         <>
-    //             <Content>
-    //                 <Auth
-    //                     navigate={navigation.navigate}
-    //                     navigationKey="FormSearchMobil"
-    //                 />
-    //             </Content>
-    //         </>
-    //     )
-    // }
+    if (!isLoggedIn) {
+        return (
+            <>
+                <Content>
+                    <Auth
+                        navigate={navigation.navigate}
+                        navigationKey="FormSearchMobil"
+                    />
+                </Content>
+            </>
+        )
+    }
 
     return (
         <>
