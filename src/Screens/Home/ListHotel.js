@@ -3,7 +3,6 @@ import { Text, Button, Icon, View, Content, Card, CardItem, Thumbnail } from 'na
 import { Dimensions, StyleSheet } from 'react-native'
 import Header from '../../Components/Base/Header'
 import rk from '../../Assets/Images/rk.jpg'
-import axios from 'axios'
 import {API_BASEURL} from 'react-native-dotenv'
 import http from  '../../Helpers/Http'
 
@@ -15,8 +14,13 @@ export default props => {
 
     useEffect(() => {
         const idCity = props.navigation.getParam('idCity')
-        console.log(`${API_BASEURL}/hotel?id_city=${idCity}`);
-        http.get(`${API_BASEURL}/hotel?id_city=${idCity}`)
+        const checkIn = props.navigation.getParam('checkIn').toISOString().split('T')[0]
+        const checkOut = props.navigation.getParam('checkOut').toISOString().split('T')[0]
+
+        console.log(typeof checkOut)
+        // return
+        console.log(`${API_BASEURL}/hotel?id_city=${idCity}&from_date=${checkIn}&to_date=${checkOut}`);
+        http.get(`${API_BASEURL}/hotel?id_city=${idCity}&from_date=${checkIn}&to_date=${checkOut}`)
         .then(res => {
             setCities(res.data.data)
         })
