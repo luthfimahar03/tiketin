@@ -2,26 +2,27 @@ import React, {useEffect, useState} from 'react'
 import { Text, Button, Icon, View, Content, Card, CardItem, Thumbnail, Right, Row } from 'native-base'
 import { Dimensions, StyleSheet } from 'react-native'
 import Header from '../../Components/Base/Header'
-import {API_BASEURL} from 'react-native-dotenv'
+import { API_BASEURL } from 'react-native-dotenv'
+import daysjs from 'dayjs'
 import http from  '../../Helpers/Http'
-import rk from '../../Assets/Images/rk.jpg'
 
 export default ({ navigation }) => {
     const screenHeight = Math.round(Dimensions.get('window').height)
     const screenWidth = Math.round(Dimensions.get('window').width)
+    const idHotel = navigation.getParam('idHotel')
+    const checkIn = navigation.getParam('checkIn')
+    const checkOut = navigation.getParam('checkOut')
 
     const [Rooms, setRooms] = useState([])
 
     const getRooms = () => {
-        const idHotel = navigation.getParam('idHotel')
-        const checkIn = navigation.getParam('checkIn').toISOString().split('T')[0]
-        const checkOut = navigation.getParam('checkOut').toISOString().split('T')[0]
-
-        console.log(`${API_BASEURL}/rooms?idHotel=${idHotel}&fromDate=${checkIn}&toDate=${checkOut}&numberGuests=2`);
-        http.get(`${API_BASEURL}/rooms?idHotel=${idHotel}&fromDate=${checkIn}&toDate=${checkOut}&numberGuests=2`)
-        .then(res => {
-            setRooms(res.data.data)
-        })
+        http.get(`${API_BASEURL}/hotel/rooms?idHotel=${idHotel}&fromDate=${checkIn}&toDate=${checkOut}&numberGuests=2`)
+            .then(res => {
+                setRooms(res.data.data)
+            })
+            .catch(err => {
+                setRooms([])
+            })
     }
 
     useEffect(() => {
@@ -38,8 +39,7 @@ export default ({ navigation }) => {
                         leftComponent={
                             <Button
                                 transparent
-                                onPress={() => navigation.goBack()
-                                }
+                                onPress={() => navigation.goBack()}
                                 style={{ marginTop: -30 }}
                             >
                                 <Icon
@@ -172,7 +172,6 @@ export default ({ navigation }) => {
                                                                 /kamar/malam
                                                             </Text>
                                                         </View>
-
                                                     </View>
                                                     <View style={{ flexDirection: "row" }}>
                                                         <View style={{ flex: 1, marginTop: 5 }}>

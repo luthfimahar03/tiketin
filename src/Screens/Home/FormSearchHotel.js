@@ -101,7 +101,7 @@ export default ({ navigation }) => {
                         <View style={{ flex: 2 }}>
                             <DatePicker
                                 defaultDate={new Date()}
-                                locale={"en"}
+                                locale="en"
                                 timeZoneOffsetInMinutes={undefined}
                                 modalTransparent={false}
                                 animationType={"fade"}
@@ -124,6 +124,7 @@ export default ({ navigation }) => {
                     </Item>
                     <Button
                         block
+                        disabled={!(CheckIn && CheckOut)}
                         style={styles.btnSearch}
                         onPress={() => navigation.navigate('ListHotel', {
                             city: Lokasi.name,

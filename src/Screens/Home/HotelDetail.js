@@ -2,14 +2,18 @@ import React from 'react'
 import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
 import { H2, Content, View, Text, Button, Icon, Footer } from 'native-base'
 import Header from '../../Components/Base/Header'
+import Stars from '../../Components/Base/Stars'
 import Carousel from '../../Components/Base/Carousel'
 import Color from '../../Assets/Color'
+import { API_BASEURL } from 'react-native-dotenv'
+
 
 export default ({ navigation }) => {
+    const data = navigation.getParam('hotel')
     return (
         <>
             <Header
-                title={navigation.getParam('title')}
+                title={data.name}
                 leftComponent={
                     <Button transparent onPress={() => navigation.goBack()}>
                         <Icon name="arrow-back" style={{ color: 'white' }} />
@@ -19,70 +23,23 @@ export default ({ navigation }) => {
             <Content>
                 <Carousel
                     images={[
-                        'https://static.tiket.photos/image/upload/v1545896251/hotel/images-web/2018/12/27/35e02f6c-0ade-4fb3-a31c-44ed26d01c854edecac4806e0f9fc5863ee776837418.jpg',
-                        'https://static.tiket.photos/image/upload/v1545896251/hotel/images-web/2018/12/27/35e02f6c-0ade-4fb3-a31c-44ed26d01c854edecac4806e0f9fc5863ee776837418.jpg',
-                        'https://static.tiket.photos/image/upload/v1545896251/hotel/images-web/2018/12/27/35e02f6c-0ade-4fb3-a31c-44ed26d01c854edecac4806e0f9fc5863ee776837418.jpg'
+                        `${API_BASEURL}/${String(data.image_url || '').replace(':/', '')}`,
+                        `${API_BASEURL}/${String(data.image_url || '').replace(':/', '')}`,
+                        `${API_BASEURL}/${String(data.image_url || '').replace(':/', '')}`
                     ]}
                 />
                 <View style={styles.content}>
                     <View style={styles.brand}>
-                        <H2 style={{ fontWeight: 'bold' }}>{navigation.getParam('title')}</H2>
+                        <H2 style={{ fontWeight: 'bold' }}>{data.name}</H2>
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                            <Icon
-                                type="AntDesign"
-                                name="star"
-                                style={{ fontSize: 20, color: '#FFDF00' }}
-                            />
-                            <Icon
-                                type="AntDesign"
-                                name="star"
-                                style={{ fontSize: 20, color: '#FFDF00' }}
-                            />
-                            <Icon
-                                type="AntDesign"
-                                name="star"
-                                style={{ fontSize: 20, color: '#FFDF00' }}
-                            />
-                            <Text style={{ marginHorizontal: 25 }}>
-                                Hotel | Alamat
+                            <Stars count={data.star} />
+                        </View>
+                        <View>
+                            <Text style={{ fontSize: 14, marginVertical: 10 }}>
+                                Hotel | {data.address}
                             </Text>
                         </View>
                     </View>
-                    <View style={{padding: 20, width: '100%'}}>
-                        <Text style={{fontSize: 22}}>Fasilitas</Text>
-                    </View>
-                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{padding: 10}} >
-                        <TouchableOpacity
-                            style={{
-                                borderWidth:1,
-                                borderColor:'rgba(0,0,0,0.2)',
-                                alignItems:'center',
-                                justifyContent:'center',
-                                width:100,
-                                margin:10,
-                                height:100,
-                                backgroundColor:'#fff',
-                                borderRadius:50,
-                            }}
-                            >
-                            <Icon name={"wifi"} type="FontAwesome" size={30} color="#01a699" />
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={{
-                                borderWidth:1,
-                                borderColor:'rgba(0,0,0,0.2)',
-                                alignItems:'center',
-                                justifyContent:'center',
-                                width:100,
-                                margin: 10,
-                                height:100,
-                                backgroundColor:'#fff',
-                                borderRadius:50,
-                            }}
-                            >
-                            <Icon name={"pool"} type="FontAwesome" size={30} color="#01a699" />
-                        </TouchableOpacity>
-                    </ScrollView>
                     <View style={{padding: 20, width: '100%'}}>
                         <Text style={{fontSize: 22}}>Tentang Hotel Ini</Text>
                     </View>
@@ -93,7 +50,7 @@ export default ({ navigation }) => {
             </Content>
             <Footer style={styles.footer} >
                 <Text style={{ color: Color.Base, fontWeight: 'bold' }} onPress={() => navigation.navigate('ListKamar', {
-                        idHotel: navigation.getParam('id'),
+                        idHotel: data.id,
                         checkIn: navigation.getParam('checkIn'),
                         checkOut: navigation.getParam('checkOut')
                     })}>
