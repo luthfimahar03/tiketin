@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
 import { H2, Content, View, Text, Button, Icon, Footer } from 'native-base'
 import Header from '../../Components/Base/Header'
 import Carousel from '../../Components/Base/Carousel'
@@ -9,7 +9,7 @@ export default ({ navigation }) => {
     return (
         <>
             <Header
-                title="The Alts Hotel"
+                title={navigation.getParam('title')}
                 leftComponent={
                     <Button transparent onPress={() => navigation.goBack()}>
                         <Icon name="arrow-back" style={{ color: 'white' }} />
@@ -26,7 +26,7 @@ export default ({ navigation }) => {
                 />
                 <View style={styles.content}>
                     <View style={styles.brand}>
-                        <H2 style={{ fontWeight: 'bold' }}>The Alts Hotel</H2>
+                        <H2 style={{ fontWeight: 'bold' }}>{navigation.getParam('title')}</H2>
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
                             <Icon
                                 type="AntDesign"
@@ -48,10 +48,55 @@ export default ({ navigation }) => {
                             </Text>
                         </View>
                     </View>
+                    <View style={{padding: 20, width: '100%'}}>
+                        <Text style={{fontSize: 22}}>Fasilitas</Text>
+                    </View>
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{padding: 10}} >
+                        <TouchableOpacity
+                            style={{
+                                borderWidth:1,
+                                borderColor:'rgba(0,0,0,0.2)',
+                                alignItems:'center',
+                                justifyContent:'center',
+                                width:100,
+                                margin:10,
+                                height:100,
+                                backgroundColor:'#fff',
+                                borderRadius:50,
+                            }}
+                            >
+                            <Icon name={"wifi"} type="FontAwesome" size={30} color="#01a699" />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={{
+                                borderWidth:1,
+                                borderColor:'rgba(0,0,0,0.2)',
+                                alignItems:'center',
+                                justifyContent:'center',
+                                width:100,
+                                margin: 10,
+                                height:100,
+                                backgroundColor:'#fff',
+                                borderRadius:50,
+                            }}
+                            >
+                            <Icon name={"pool"} type="FontAwesome" size={30} color="#01a699" />
+                        </TouchableOpacity>
+                    </ScrollView>
+                    <View style={{padding: 20, width: '100%'}}>
+                        <Text style={{fontSize: 22}}>Tentang Hotel Ini</Text>
+                    </View>
+                    <View style={{paddingHorizontal: 20, paddingVertical: 5, width: '100%'}}>
+                        <Text style={{fontSize: 18}}>This luxe hotel in a downtown high-rise is 4.2 km from Gelora Bung Karno Stadium, 4.5 km from Tebet train station and 9 km from the Istiqial Mosque</Text>
+                    </View>
                 </View>
             </Content>
-            <Footer style={styles.footer}>
-                <Text style={{ color: Color.Base, fontWeight: 'bold' }}>
+            <Footer style={styles.footer} >
+                <Text style={{ color: Color.Base, fontWeight: 'bold' }} onPress={() => navigation.navigate('ListKamar', {
+                        idHotel: navigation.getParam('id'),
+                        checkIn: navigation.getParam('checkIn'),
+                        checkOut: navigation.getParam('checkOut')
+                    })}>
                     PILIH KAMAR
                 </Text>
             </Footer>
